@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SARTHAK YADAV | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -164,6 +164,13 @@
             font-size: 0.85rem;
             color: #ccc;
             background: rgba(255, 255, 255, 0.03);
+            transition: 0.3s;
+        }
+
+        .pill:hover {
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
 
         .hero-text h2 {
@@ -172,24 +179,36 @@
             margin-bottom: 10px;
         }
 
+        /* 🔥 BIGGER & MULTI-COLOR ANIMATED NAME */
         .hero-text h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-size: clamp(3.5rem, 6vw, 5.5rem); /* BUMPED UP SIZE */
+            font-weight: 900;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
-            background-size: 200% auto;
+            
+            /* Dynamic Multi-Color Animated Gradient */
+            background: linear-gradient(
+                90deg, 
+                #00f0ff, 
+                #ff0055, 
+                #7000ff, 
+                #ff9900, 
+                #00f0ff
+            );
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
-            line-height: 1.1;
-            animation: nameShift 4s linear infinite;
+            line-height: 1.05;
+            animation: nameShift 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.35));
         }
 
         @keyframes nameShift {
             0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .tag-container {
@@ -278,16 +297,24 @@
             gap: 25px;
         }
 
+        /* 📜 SCROLL REVEAL CARDS */
         .card {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) !important;
             border-color: var(--primary);
             box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
@@ -339,7 +366,7 @@
             .tag-container {
                 margin: 0 auto;
             }
-            .hero-text h1 { font-size: 2.8rem; }
+            .hero-text h1 { font-size: 3.2rem; }
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
             .nav-email { display: none; }
@@ -367,8 +394,10 @@
         <div class="scroll-content">
 
             <div class="content-block visible">
-                <h2>Hello I'm</h2>
-                <h1>SARTHAK YADAV</h1>
+                <div class="hero-text">
+                    <h2>Hello I'm</h2>
+                    <h1>SARTHAK YADAV</h1>
+                </div>
                 <div class="tag-container">
                     <div class="tag">💻 Software Engineer</div>
                     <div class="tag">🎨 Digital Artist</div>
@@ -423,16 +452,21 @@
     </footer>
 
     <script>
-        const blocks = document.querySelectorAll('.content-block');
+        // Observe content blocks & skill cards for scroll reveal FX
+        const elementsToAnimate = document.querySelectorAll('.content-block, .card');
+        
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    // Stagger card animation slightly for drip factor
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.2 });
 
-        blocks.forEach(block => observer.observe(block));
+        elementsToAnimate.forEach(el => observer.observe(el));
     </script>
 
 </body>
