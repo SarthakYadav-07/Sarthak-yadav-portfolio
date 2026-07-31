@@ -79,11 +79,14 @@
             background: radial-gradient(circle at center, #181b2c 0%, #0a0a0f 100%);
             gap: 40px;
             flex-wrap: wrap;
+            position: relative;
         }
 
         .hero-text {
             flex: 1;
             min-width: 300px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-text h2 {
@@ -134,38 +137,45 @@
             transform: translateX(8px);
         }
 
-        /* 🎨 AVATAR DISPLAY */
+        /* 🎨 AVATAR DISPLAY — floating glow, no boxed frame */
         .hero-avatar {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             min-width: 320px;
+            position: relative;
+        }
+
+        .hero-avatar::before {
+            content: '';
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            max-width: 90%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.28) 0%, rgba(255, 0, 85, 0.12) 45%, transparent 72%);
+            filter: blur(15px);
+            z-index: 0;
         }
 
         .avatar-frame {
             position: relative;
+            z-index: 1;
             width: 100%;
             max-width: 420px;
-            border-radius: 25px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 240, 255, 0.4);
-            box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
-            transition: 0.4s ease;
-            background: #131521;
-        }
-
-        .avatar-frame:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 60px rgba(0, 240, 255, 0.6);
-            transform: scale(1.02);
         }
 
         .avatar-frame img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 20px;
+            filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.35));
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-16px); }
         }
 
         /* 🌟 SECTIONS */
@@ -280,8 +290,7 @@
 
         <div class="hero-avatar">
             <div class="avatar-frame">
-                <!-- 🎨 DIRECT WORKING PNG IMAGE URL -->
-                <img src="https://i.imgur.com/8Q9K6Z0.png" alt="Sarthak Yadav Avatar">
+                <img src="images/avatar.png" alt="Sarthak Yadav Avatar">
             </div>
         </div>
     </section>
