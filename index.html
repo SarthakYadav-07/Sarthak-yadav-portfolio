@@ -40,6 +40,12 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transform: translateY(-100%);
+            animation: slideDownNav 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes slideDownNav {
+            to { transform: translateY(0); }
         }
 
         .logo {
@@ -104,6 +110,9 @@
             justify-content: center;
             align-items: center;
             height: calc(100vh - 130px);
+            opacity: 0;
+            transform: translateX(-100px);
+            animation: slideInLeft 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
         }
 
         .scroll-content {
@@ -119,13 +128,13 @@
             flex-direction: column;
             justify-content: center;
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateX(100px);
+            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .content-block.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
 
         .eyebrow {
@@ -312,6 +321,22 @@
             gap: 25px;
         }
 
+        /* 🛷 SLIDING EFFECT CLASSES FOR CARDS & TIMELINE */
+        .slide-up, .slide-left, .slide-right {
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+        }
+
+        .slide-up { transform: translateY(60px); }
+        .slide-left { transform: translateX(-80px); }
+        .slide-right { transform: translateX(80px); }
+
+        .slide-up.active, .slide-left.active, .slide-right.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
         .card {
             background: var(--card-bg);
             padding: 30px;
@@ -323,7 +348,7 @@
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             border-color: var(--primary);
             box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
@@ -360,7 +385,7 @@
         }
 
         .work-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--primary);
             box-shadow: 0 12px 35px rgba(0, 240, 255, 0.2);
         }
@@ -508,7 +533,6 @@
             font-weight: 500;
         }
 
-        /* 📱 ONLINE CLASS PILLS */
         .platform-pills {
             display: flex;
             gap: 8px;
@@ -554,7 +578,7 @@
         }
 
         .medal-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
             border-color: var(--primary);
             box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
         }
@@ -641,6 +665,11 @@
 
         .xray-lens.active {
             opacity: 1;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @media (hover: none) {
@@ -740,26 +769,26 @@
 
     <!-- 🛠️ WHAT I DO SECTION -->
     <section class="section" id="skills" style="background: rgba(19, 21, 33, 0.2);">
-        <h2 class="section-title">WHAT I DO</h2>
-        <div class="section-sub-heading">MY WORK</div>
-        <p class="section-subtitle">Blending creativity, code, and pure inspiration into everything I make.</p>
+        <h2 class="section-title slide-up">WHAT I DO</h2>
+        <div class="section-sub-heading slide-up">MY WORK</div>
+        <p class="section-subtitle slide-up">Blending creativity, code, and pure inspiration into everything I make.</p>
         <div class="grid">
-            <div class="card">
+            <div class="card slide-left">
                 <div class="card-icon">✏️</div>
                 <h3>Drawing & Art</h3>
                 <p>Sketching characters, doodles, and random creative ideas. Bringing concepts from paper directly into digital form.</p>
             </div>
-            <div class="card">
+            <div class="card slide-up">
                 <div class="card-icon">💻</div>
                 <h3>Software & Coding</h3>
                 <p>Learning to build stuff that actually works — responsive websites, cool scripts, interactive apps, and clean code.</p>
             </div>
-            <div class="card">
+            <div class="card slide-up">
                 <div class="card-icon">🎨</div>
                 <h3>UI/UX & Designing</h3>
                 <p>Experimenting with colors, layouts, logos, and user interfaces — figuring out what looks good and why it works.</p>
             </div>
-            <div class="card">
+            <div class="card slide-right">
                 <div class="card-icon">⛩️</div>
                 <h3>Anime Scholar</h3>
                 <p>Fuelled by peak animation, insane storylines, epic soundtracks, and non-stop creative inspiration for design & storytelling.</p>
@@ -769,11 +798,11 @@
 
     <!-- 💼 MY WORK SECTION -->
     <section class="section" id="work">
-        <h2 class="section-title">MY WORK & CREATIONS</h2>
-        <p class="section-subtitle">Interactive applications, algorithmic tools, and UI prototypes built with precision.</p>
+        <h2 class="section-title slide-up">MY WORK & CREATIONS</h2>
+        <p class="section-subtitle slide-up">Interactive applications, algorithmic tools, and UI prototypes built with precision.</p>
 
         <div class="grid">
-            <div class="work-card">
+            <div class="work-card slide-left">
                 <div>
                     <span class="work-badge">Web Engineering</span>
                     <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff;">Interactive Physics & Stress Engine</h3>
@@ -789,7 +818,7 @@
                 <a href="#minigame" class="work-link">Launch Live Demo ➔</a>
             </div>
 
-            <div class="work-card">
+            <div class="work-card slide-up">
                 <div>
                     <span class="work-badge">UI/UX Innovation</span>
                     <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff;">Cyberpunk X-Ray Lens Component</h3>
@@ -805,7 +834,7 @@
                 <a href="#home" class="work-link">Test Lens Above ➔</a>
             </div>
 
-            <div class="work-card">
+            <div class="work-card slide-right">
                 <div>
                     <span class="work-badge">Skill & Data Logic</span>
                     <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff;">Mitty Verse Training Matrix</h3>
@@ -824,10 +853,10 @@
 
     <!-- 🎓 EDUCATION & JOURNEY SECTION -->
     <section class="timeline-section" id="education">
-        <h2 class="section-title">MY EDUCATION & JOURNEY</h2>
+        <h2 class="section-title slide-up">MY EDUCATION & JOURNEY</h2>
         
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item slide-left">
                 <div class="timeline-header">
                     <div>
                         <h3 class="timeline-role">1st Grade (E-Learning)</h3>
@@ -840,8 +869,7 @@
                 </div>
             </div>
 
-            <!-- 🌐 ONLINE E-LEARNING PLATFORMS (NEW ADDITION) -->
-            <div class="timeline-item">
+            <div class="timeline-item slide-right">
                 <div class="timeline-header">
                     <div>
                         <h3 class="timeline-role">Online Learning & Coaching Platforms</h3>
@@ -859,7 +887,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item slide-left">
                 <div class="timeline-header">
                     <div>
                         <h3 class="timeline-role">2nd Grade to 6th Grade</h3>
@@ -874,7 +902,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item slide-right">
                 <div class="timeline-header">
                     <div>
                         <h3 class="timeline-role">Extra Classes & Skill Training</h3>
@@ -891,10 +919,10 @@
 
     <!-- 🏆 OLYMPIADS SHOWCASE SECTION -->
     <section class="olympiad-section" id="olympiads">
-        <h2 class="section-title">OLYMPIADS & HONORS</h2>
+        <h2 class="section-title slide-up">OLYMPIADS & HONORS</h2>
         <div class="grid">
 
-            <div class="medal-card gold-border">
+            <div class="medal-card gold-border slide-left">
                 <div>
                     <div class="medal-badge">🥇</div>
                     <h3>SOF National Science Olympiad</h3>
@@ -907,7 +935,7 @@
                 </div>
             </div>
 
-            <div class="medal-card gold-border">
+            <div class="medal-card gold-border slide-up">
                 <div>
                     <div class="medal-badge">🌟</div>
                     <h3>Intl. Reasoning & Aptitude (2024-25)</h3>
@@ -920,7 +948,7 @@
                 </div>
             </div>
 
-            <div class="medal-card gold-border">
+            <div class="medal-card gold-border slide-right">
                 <div>
                     <div class="medal-badge">🥈</div>
                     <h3>Intl. Olympiad of Math (2022-23)</h3>
@@ -933,7 +961,7 @@
                 </div>
             </div>
 
-            <div class="medal-card">
+            <div class="medal-card slide-left">
                 <div>
                     <div class="medal-badge">🥈</div>
                     <h3>Intl. Olympiad of Math (2023-24)</h3>
@@ -946,7 +974,7 @@
                 </div>
             </div>
 
-            <div class="medal-card gold-border">
+            <div class="medal-card gold-border slide-up">
                 <div>
                     <div class="medal-badge">🏓</div>
                     <h3>Table Tennis Tournament (2023-24)</h3>
@@ -958,7 +986,7 @@
                 </div>
             </div>
 
-            <div class="medal-card">
+            <div class="medal-card slide-right">
                 <div>
                     <div class="medal-badge">🇫🇷</div>
                     <h3>French Language Event (2025-26)</h3>
@@ -970,7 +998,7 @@
                 </div>
             </div>
 
-            <div class="medal-card">
+            <div class="medal-card slide-left">
                 <div>
                     <div class="medal-badge">♟️</div>
                     <h3>Sapient Chess Club Tournament</h3>
@@ -982,7 +1010,7 @@
                 </div>
             </div>
 
-            <div class="medal-card">
+            <div class="medal-card slide-up">
                 <div>
                     <div class="medal-badge">📚</div>
                     <h3>Intl. English Olympiad (2023-24)</h3>
@@ -994,7 +1022,7 @@
                 </div>
             </div>
 
-            <div class="medal-card">
+            <div class="medal-card slide-right">
                 <div>
                     <div class="medal-badge">📖</div>
                     <h3>Intl. English Olympiad (2024-25)</h3>
@@ -1006,7 +1034,7 @@
                 </div>
             </div>
 
-            <div class="medal-card">
+            <div class="medal-card slide-up">
                 <div>
                     <div class="medal-badge">🔬</div>
                     <h3>SOF National Science Olympiad (2024-25)</h3>
@@ -1021,7 +1049,7 @@
     </section>
 
     <!-- 🫧 ANTISTRESS FIDGET TOY SECTION -->
-    <section class="section" id="minigame" style="text-align: center;">
+    <section class="section slide-up" id="minigame" style="text-align: center;">
         <h2 class="section-title">ANTISTRESS ZONE 🫧</h2>
         <p style="color: #a0a0b5; margin-bottom: 20px;">Click or tap the floating bubbles to pop them & release stress! ✨</p>
         
@@ -1038,16 +1066,18 @@
     </footer>
 
     <script>
-        const blocks = document.querySelectorAll('.content-block');
-        const observer = new IntersectionObserver((entries) => {
+        // 🛷 ADVANCED SCROLL SLIDING OBSERVER
+        const slideElements = document.querySelectorAll('.slide-up, .slide-left, .slide-right, .content-block');
+        const slideObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.15 });
 
-        blocks.forEach(block => observer.observe(block));
+        slideElements.forEach(el => slideObserver.observe(el));
 
         const xrayLens = document.getElementById('xrayLens');
         document.addEventListener('mousemove', (e) => {
