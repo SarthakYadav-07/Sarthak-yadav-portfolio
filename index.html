@@ -1,63 +1,1480 @@
-<footer class="footer-container">
-  <h2 class="footer-title">CONTACT</h2>
-  
-  <div class="footer-grid">
-    <!-- Column 1: Contact & Status -->
-    <div class="footer-col">
-      <div class="footer-group">
-        <span class="col-label">Email</span>
-        <a href="mailto:sarthakyadav07911@gmail.com" class="footer-link-main">sarthakyadav07911@gmail.com</a>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARTHAK YADAV | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-      <div class="footer-group">
-        <span class="col-label">Currently</span>
-        <p class="footer-text">Student</p>
-      </div>
+        body {
+            background-color: #0a0a0f;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
 
-      <div class="footer-group">
-        <span class="col-label">Education</span>
-        <p class="footer-text font-bold">Knowledge Tree World School</p>
-      </div>
-    </div>
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff0055;
+            --bg-dark: #0d0e15;
+            --card-bg: #131521;
+            --gold: #ffd700;
+        }
 
-    <!-- Column 2: Socials & Languages -->
-    <div class="footer-col">
-      <div class="footer-group">
-        <span class="col-label">Social</span>
-        <ul class="social-list">
-          <li>
-            <a href="https://github.com/SarthakYadav-07" target="_blank" rel="noopener noreferrer" class="social-link">
-              Github <span class="arrow">↗</span>
-            </a>
-          </li>
+        /* 🎬 FIXED NAV LAYOUT TO PREVENT OVERLAP */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 40px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 20px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transform: translateY(-100%);
+            animation: slideDownNav 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        @keyframes slideDownNav {
+            to { transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ✉️ CENTERED GMAIL (NO OVERLAP GUARANTEE) */
+        .nav-email-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .nav-email {
+            color: #aaa;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .nav-email:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
+
+        .profile {
+            display: flex;
+            gap: 60px;
+            padding: 120px 8% 0 8%;
+            background: radial-gradient(circle at center, #181b2c 0%, #0a0a0f 100%);
+            align-items: flex-start;
+        }
+
+        /* 🎬 AVATAR OPENING ANIMATION */
+        .sticky-avatar {
+            flex: 1;
+            min-width: 320px;
+            position: sticky;
+            top: 110px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 130px);
+            opacity: 0;
+            animation: avatarPop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+        }
+
+        @keyframes avatarPop {
+            0% { opacity: 0; transform: scale(0.6) rotate(-5deg); filter: blur(10px); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
+        }
+
+        .scroll-content {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-block {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .content-block.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 🎬 HERO OPENING ANIMATION */
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: #aaa;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: heroSubEntrance 0.8s ease forwards 0.6s;
+        }
+
+        @keyframes heroSubEntrance {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-text h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            opacity: 0;
+            animation: heroTitleEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards, nameShift 4s linear infinite 1.8s;
+        }
+
+        @keyframes heroTitleEntrance {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); filter: blur(8px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        @keyframes nameShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .tag-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 280px;
+        }
+
+        /* 🎬 STAGGERED OPENING TAG ANIMATION */
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: tagEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .tag:nth-child(1) { animation-delay: 1.0s; }
+        .tag:nth-child(2) { animation-delay: 1.2s; }
+        .tag:nth-child(3) { animation-delay: 1.4s; }
+        .tag:nth-child(4) { animation-delay: 1.6s; }
+
+        @keyframes tagEntrance {
+            0% { opacity: 0; transform: translateX(-40px) scale(0.9); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+            transform: translateX(8px);
+        }
+
+        .about-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+
+        .about-text {
+            color: #a0a0b5;
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 560px;
+            margin-bottom: 30px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pill {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.03);
+            transition: 0.3s;
+        }
+
+        .pill:hover {
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .sticky-avatar::before {
+            content: '';
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            max-width: 90%;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.28) 0%, rgba(255, 0, 85, 0.12) 45%, transparent 72%);
+            filter: blur(15px);
+            z-index: 0;
+        }
+
+        .floating-avatar {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 460px;
+            height: auto;
+            display: block;
+            border-radius: 18px;
+            filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.35));
+            -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%),
+                               linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+            -webkit-mask-composite: source-in;
+            mask-image: linear-gradient(to bottom, #000 78%, transparent 100%),
+                        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+            mask-composite: intersect;
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-16px); }
+        }
+
+        .section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-sub-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #a0a0b5;
+            font-size: 1rem;
+            margin-bottom: 50px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--secondary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .slide-up, .slide-left, .slide-right {
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+        }
+
+        .slide-up { transform: translateY(60px); }
+        .slide-left { transform: translateX(-80px); }
+        .slide-right { transform: translateX(80px); }
+
+        .slide-up.active, .slide-left.active, .slide-right.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card p {
+            color: #a0a0b5;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 🦾 MITTY VERSE ROBOTIC HAND SHOWCASE CARD */
+        .robot-card {
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .robot-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 45px rgba(0, 240, 255, 0.35);
+            border-color: var(--secondary);
+        }
+
+        .robot-badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            width: fit-content;
+        }
+
+        .robot-tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .robot-tech-item {
+            background: rgba(255, 0, 85, 0.12);
+            color: var(--secondary);
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .robot-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, var(--secondary), #7000ff);
+            padding: 12px 24px;
+            border-radius: 12px;
+            width: fit-content;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+        }
+
+        .robot-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.7);
+        }
+
+        .timeline-section {
+            padding: 100px 10%;
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            padding-left: 35px;
+            border-left: 3px solid rgba(0, 240, 255, 0.25);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -44px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            transition: 0.3s ease;
+        }
+
+        .timeline-item:hover::before {
+            background: var(--secondary);
+            box-shadow: 0 0 25px var(--secondary);
+            transform: scale(1.3);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .timeline-role {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .timeline-institution {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .timeline-date {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .timeline-desc {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 22px;
+            border-radius: 14px;
+            color: #a0a0b5;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            transition: 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-desc {
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.1);
+        }
+
+        .address-tag {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #ff0055;
+            font-weight: 500;
+        }
+
+        .platform-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .platform-pill {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .olympiad-section {
+            padding: 80px 10%;
+            background: rgba(19, 21, 33, 0.4);
+        }
+
+        .medal-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .medal-card.gold-border {
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .medal-card.gold-border:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+        }
+
+        .medal-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+        }
+
+        .medal-badge {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .medal-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .medal-card p {
+            color: #a0a0b5;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .stats-tag {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(15px);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .medal-card:hover .stats-tag {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 120px;
+            margin-top: 15px;
+        }
+
+        .stat-badge {
+            background: rgba(0, 240, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        /* 👑 CUSTOM FOOTER STYLES */
+        .footer-container {
+            background-color: #06070a;
+            padding: 60px 10%;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .footer-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-group {
+            margin-bottom: 28px;
+        }
+
+        .col-label {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-link-main {
+            color: #ffffff;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: 0.3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .footer-link-main:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
+
+        .footer-text {
+            color: #cbd5e1;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .font-bold {
+            font-weight: 600;
+        }
+
+        .social-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-link {
+            color: #ffffff;
+            font-size: 1.3rem;
+            text-decoration: none;
+            border-bottom: 1px solid #334155;
+            display: inline-block;
+            padding-bottom: 4px;
+            width: 100%;
+            max-width: 220px;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .social-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        .arrow {
+            font-size: 1rem;
+            margin-left: 6px;
+        }
+
+        .credit-text {
+            color: #ffffff;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .highlight-name {
+            color: var(--primary);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+        }
+
+        .copyright {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #475569;
+            margin-top: 25px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1e293b;
+            padding-top: 30px;
+        }
+
+        .icon {
+            color: #94a3b8;
+            transition: all 0.3s ease;
+        }
+
+        .icon:hover {
+            color: var(--primary);
+            transform: scale(1.15);
+        }
+
+        .back-to-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .back-to-top:hover {
+            color: #ffffff;
+        }
+
+        .top-arrow-btn {
+            border: 1px solid #334155;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            transition: 0.3s;
+        }
+
+        .back-to-top:hover .top-arrow-btn {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .xray-lens {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            backdrop-filter: invert(1) hue-rotate(180deg);
+            -webkit-backdrop-filter: invert(1) hue-rotate(180deg);
+            border: 1.5px solid rgba(0, 240, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .xray-lens.active {
+            opacity: 1;
+        }
+
+        @media (hover: none) {
+            .xray-lens { display: none; }
+            .stats-tag {
+                opacity: 1;
+                transform: translateY(0);
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .nav-email-wrapper { display: none; }
+        }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .profile {
+                flex-direction: column;
+                padding: 110px 6% 0 6%;
+            }
+            .sticky-avatar {
+                position: relative;
+                top: 0;
+                height: auto;
+                padding: 20px 0 0 0;
+            }
+            .content-block {
+                min-height: auto;
+                padding: 40px 0;
+                text-align: center;
+                align-items: center;
+            }
+            .about-text { max-width: 100%; }
+            .pill-row { justify-content: center; }
+            .tag-container { margin: 0 auto; }
+            .hero-text h1 { font-size: 2.8rem; }
+            nav { 
+                display: flex;
+                justify-content: space-between;
+                padding: 15px 20px; 
+            }
+            .nav-links { display: none; }
+            .timeline { padding-left: 25px; }
+            .timeline-item::before { left: -34px; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <div class="xray-lens" id="xrayLens"></div>
+
+    <nav>
+        <div class="logo">SARTHAK YADAV'S PORTFOLIO</div>
+        
+        <div class="nav-email-wrapper">
+            <a href="mailto:sarthakyadav07911@gmail.com" class="nav-email">sarthakyadav07911@gmail.com</a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">What I Do</a></li>
+            <li><a href="#robotics">Robotics Project</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#olympiads">Olympiads</a></li>
         </ul>
+    </nav>
+
+    <section class="profile" id="home">
+        <div class="sticky-avatar">
+            <img src="avatar.png" alt="Sarthak Yadav Avatar" class="floating-avatar">
+        </div>
+
+        <div class="scroll-content">
+
+            <div class="content-block visible">
+                <div class="hero-text">
+                    <h2>Hello I'm</h2>
+                    <h1>SARTHAK YADAV</h1>
+                </div>
+                <div class="tag-container">
+                    <div class="tag">🏆 Olympiad Scholar</div>
+                    <div class="tag">🤖 Robotics Engineer</div>
+                    <div class="tag">💻 Software Developer</div>
+                    <div class="tag">⛩️ Anime Scholar</div>
+                </div>
+            </div>
+
+            <div class="content-block" id="about">
+                <div class="eyebrow" style="color: var(--primary); letter-spacing: 4px; font-weight: 700; margin-bottom: 18px; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem;">ABOUT ME</div>
+                <h3 class="about-heading">I assemble AI robotics, write software algorithms, and crush academic competitions.</h3>
+                <p class="about-text">
+                    I'm an Olympiad Scholar, software engineer, and robotics enthusiast. I physically assemble real-world hardware connected with Python AI & computer vision logic. Outside of robotics and coding, I'm an anime scholar!
+                </p>
+                <div class="pill-row">
+                    <span class="pill">Robotics Assembly</span>
+                    <span class="pill">Olympiad Scholar</span>
+                    <span class="pill">Python & Computer Vision</span>
+                    <span class="pill">Arduino Hardware</span>
+                    <span class="pill">Anime & Storytelling</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 🛠️ WHAT I DO SECTION -->
+    <section class="section" id="skills" style="background: rgba(19, 21, 33, 0.2);">
+        <h2 class="section-title slide-up">WHAT I DO</h2>
+        <div class="section-sub-heading slide-up">MY SKILLS</div>
+        <p class="section-subtitle slide-up">Blending artificial intelligence, mechanical assembly, hardware electronics, and code into powerful tech builds.</p>
+        <div class="grid">
+            <div class="card slide-left">
+                <div class="card-icon">🤖</div>
+                <h3>Hands-On Hardware Assembly</h3>
+                <p>Physically assembling 3D printed mechanical robotic hands, threading inner tendon lines through finger joints, and mounting servo motors.</p>
+            </div>
+            <div class="card slide-up">
+                <div class="card-icon">💻</div>
+                <h3>Software & AI Scripting</h3>
+                <p>Writing Python scripts with OpenCV, MediaPipe, and CVZone to track hand landmarks and compute gesture arrays in real time.</p>
+            </div>
+            <div class="card slide-up">
+                <div class="card-icon">⚡️</div>
+                <h3>Arduino & Serial Comms</h3>
+                <p>Programming Arduino microcontrollers in C++ to process serial strings (`$11111`) and drive high-torque servo motors instantly.</p>
+            </div>
+            <div class="card slide-right">
+                <div class="card-icon">⛩️</div>
+                <h3>Anime Scholar</h3>
+                <p>Fuelled by peak animation, insane storylines, epic soundtracks, and non-stop creative inspiration for coding & innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🦾 MITTY VERSE ROBOTIC HAND SECTION -->
+    <section class="section" id="robotics">
+        <h2 class="section-title slide-up">MITTY VERSE ROBOTICS</h2>
+        <div class="section-sub-heading slide-up">FEATURED BUILD</div>
+        <p class="section-subtitle slide-up">Computer Vision Computer-Guided Robotic Hand Replica.</p>
+
+        <div class="robot-card slide-up">
+            <span class="robot-badge">🤖 Mitty Verse Engineering</span>
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff;">AI Robotic Hand Assembly (Python + Arduino)</h3>
+            
+            <p style="color: #a0a0b5; font-size: 1rem; line-height: 1.8;">
+                Designed and built at <strong>Mitty Verse</strong>! I personally handled the complete physical assembly of the robotic hand — carefully stringing and routing internal mechanical threads (tendons) through each individual finger joint and anchoring them to high-torque servo motors! 🧵🖐️⚡️
+                <br><br>
+                Powered by a custom <strong>Python</strong> pipeline using <strong>OpenCV</strong> and <strong>CVZone (MediaPipe)</strong>, the system tracks 21 hand landmarks on webcam, calculates finger gestures, and sends serial strings (e.g. <code>$11111</code>) to the <strong>Arduino board</strong>. The Arduino instantly actuates the servo motors, pulling the internal finger threads to recreate human hand movements live! 🤖💥
+            </p>
+
+            <div class="robot-tech-stack">
+                <span class="robot-tech-item">🧵 Thread/Tendon Mechanism</span>
+                <span class="robot-tech-item">🔧 Mechanical Hand Assembly</span>
+                <span class="robot-tech-item">🐍 Python</span>
+                <span class="robot-tech-item">⚡️ Arduino C++</span>
+                <span class="robot-tech-item">📷 OpenCV</span>
+                <span class="robot-tech-item">🖐️ CVZone / MediaPipe</span>
+                <span class="robot-tech-item">🔌 Serial Protocol</span>
+            </div>
+
+            <a href="https://www.youtube.com/watch?v=7KV5489rL3c&t=1022s" target="_blank" class="robot-link">
+                Watch Inspiration Video ➔
+            </a>
+        </div>
+    </section>
+
+    <!-- 🎓 EDUCATION & JOURNEY SECTION -->
+    <section class="timeline-section" id="education">
+        <h2 class="section-title slide-up">MY EDUCATION & JOURNEY</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item slide-left">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">1st Grade (E-Learning)</h3>
+                        <span class="timeline-institution">🏠 Home / Online Classes</span>
+                    </div>
+                    <div class="timeline-date">2020 – 2021</div>
+                </div>
+                <div class="timeline-desc">
+                    Completed 1st Grade through online remote learning from home during the COVID-19 pandemic restrictions. Adapted early to tech-driven e-learning tools and digital classrooms! 💻📱
+                </div>
+            </div>
+
+            <div class="timeline-item slide-right">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Online Learning & Coaching Platforms</h3>
+                        <span class="timeline-institution">💻 BYJU'S • Oda Class • Vedantu</span>
+                    </div>
+                    <div class="timeline-date">2020 – 2025</div>
+                </div>
+                <div class="timeline-desc">
+                    Extensive supplemental e-learning journey across top EdTech platforms to build core problem-solving, mathematics, and logic fundamentals! 🚀🧠
+                    <div class="platform-pills">
+                        <span class="platform-pill">📱 BYJU'S (1st to 5th Grade)</span>
+                        <span class="platform-pill">🎓 Oda Class (1st to 4th Grade)</span>
+                        <span class="platform-pill">✨ Vedantu (2nd to 3rd Grade)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item slide-left">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">2nd Grade to 6th Grade</h3>
+                        <span class="timeline-institution">🌳 Knowledge Tree World School</span>
+                    </div>
+                    <div class="timeline-date">2021 – Present</div>
+                </div>
+                <div class="timeline-desc">
+                    Currently pursuing academics and co-curricular activities under the CBSE curriculum. Olympiad Scholar focusing on competitive problem-solving, coding, robotics, and tech projects! 🚀
+                    <br>
+                    <span class="address-tag">📍 Plot 21, Block M, Vatika INXT, Sector 83, Gurugram, Haryana - 122004</span>
+                </div>
+            </div>
+
+            <div class="timeline-item slide-right">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-role">Extra Classes & Skill Training</h3>
+                        <span class="timeline-institution">🌌 Mitty Verse</span>
+                    </div>
+                    <div class="timeline-date">2026 – Present</div>
+                </div>
+                <div class="timeline-desc">
+                    Taking specialized extra classes in the Mitty Verse! Unlocking next-level skills in Python AI, physical mechanical hand assembly, Arduino robotics engineering, and leveling up my tech stats! ⚡️🧠💥
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏆 OLYMPIADS SHOWCASE SECTION -->
+    <section class="olympiad-section" id="olympiads">
+        <h2 class="section-title slide-up">OLYMPIADS & HONORS</h2>
+        <div class="grid">
+
+            <div class="medal-card gold-border slide-left">
+                <div>
+                    <div class="medal-badge">🥇</div>
+                    <h3>SOF National Science Olympiad</h3>
+                    <p>Awarded Gold Medal of Excellence for performance at the school level in Class 3rd!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">School Rank: 2</span>
+                    <span class="stat-badge">Zonal Rank: 190</span>
+                    <span class="stat-badge">Intl Rank: 296</span>
+                </div>
+            </div>
+
+            <div class="medal-card gold-border slide-up">
+                <div>
+                    <div class="medal-badge">🌟</div>
+                    <h3>Intl. Reasoning & Aptitude (2024-25)</h3>
+                    <p>SilverZone Foundation (Class 4th) - Special Achievement Certificate for securing 1st Position in class!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 1st</span>
+                    <span class="stat-badge">Score: 61.02 / 100</span>
+                    <span class="stat-badge">State Rank: 168</span>
+                </div>
+            </div>
+
+            <div class="medal-card gold-border slide-right">
+                <div>
+                    <div class="medal-badge">🥈</div>
+                    <h3>Intl. Olympiad of Math (2022-23)</h3>
+                    <p>SilverZone Foundation (Class 2nd) - Special Achievement Certificate for securing 2nd Position in class with an incredible score!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 2nd</span>
+                    <span class="stat-badge">Score: 91.53 / 100</span>
+                    <span class="stat-badge">State Rank: 123</span>
+                </div>
+            </div>
+
+            <div class="medal-card slide-left">
+                <div>
+                    <div class="medal-badge">🥈</div>
+                    <h3>Intl. Olympiad of Math (2023-24)</h3>
+                    <p>SilverZone Foundation (Class 3rd) - Special Achievement Certificate securing 2nd Position in class!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 2nd</span>
+                    <span class="stat-badge">Score: 58.52 / 100</span>
+                    <span class="stat-badge">Zonal Rank: 2,821</span>
+                </div>
+            </div>
+
+            <div class="medal-card gold-border slide-up">
+                <div>
+                    <div class="medal-badge">🏓</div>
+                    <h3>Table Tennis Tournament (2023-24)</h3>
+                    <p>Knowledge Tree World School - Awarded Certificate of Merit for securing 1st Position!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class 3rd</span>
+                    <span class="stat-badge">1st Position 🏆</span>
+                </div>
+            </div>
+
+            <div class="medal-card slide-right">
+                <div>
+                    <div class="medal-badge">🇫🇷</div>
+                    <h3>French Language Event (2025-26)</h3>
+                    <p>Knowledge Tree World School - Awarded Certificate of Merit for securing 2nd Position!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class V-A</span>
+                    <span class="stat-badge">2nd Position 🥈</span>
+                </div>
+            </div>
+
+            <div class="medal-card slide-left">
+                <div>
+                    <div class="medal-badge">♟️</div>
+                    <h3>Sapient Chess Club Tournament</h3>
+                    <p>Knowledge Tree World School (2024) - Competed in Category 2 Chess Tournament!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class 4th</span>
+                    <span class="stat-badge">Chess Club Member</span>
+                </div>
+            </div>
+
+            <div class="medal-card slide-up">
+                <div>
+                    <div class="medal-badge">📚</div>
+                    <h3>Intl. English Olympiad (2023-24)</h3>
+                    <p>SilverZone Foundation (Class 3rd) - Certificate of Participation in English Language Olympiad.</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 5th</span>
+                    <span class="stat-badge">Score: 67.03 / 100</span>
+                </div>
+            </div>
+
+            <div class="medal-card slide-right">
+                <div>
+                    <div class="medal-badge">📖</div>
+                    <h3>Intl. English Olympiad (2024-25)</h3>
+                    <p>SilverZone Foundation (Class 4th) - Certificate of Participation in English Language Olympiad.</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 4th</span>
+                    <span class="stat-badge">Score: 55.02 / 100</span>
+                </div>
+            </div>
+
+            <div class="medal-card slide-up">
+                <div>
+                    <div class="medal-badge">🔬</div>
+                    <h3>SOF National Science Olympiad (2024-25)</h3>
+                    <p>Class 4th Participation in the worldwide SOF Science Olympiad platform.</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">SOF Olympiad Scholar</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 🫧 ANTISTRESS FIDGET TOY SECTION -->
+    <section class="section slide-up" id="minigame" style="text-align: center;">
+        <h2 class="section-title">ANTISTRESS ZONE 🫧</h2>
+        <p style="color: #a0a0b5; margin-bottom: 20px;">Click or tap the floating bubbles to pop them & release stress! ✨</p>
+        
+        <div style="position: relative; max-width: 700px; margin: 0 auto; border: 2px solid var(--primary); border-radius: 16px; overflow: hidden; box-shadow: 0 0 25px rgba(0,240,255,0.25);">
+            <canvas id="stressCanvas" width="700" height="350" style="background: #0d0e15; display: block; width: 100%; cursor: pointer;"></canvas>
+            <div style="position: absolute; bottom: 12px; right: 20px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--primary);">
+                POPPED: <span id="popCount" style="font-weight: 800; color: #fff;">0</span> 💥
+            </div>
+        </div>
+    </section>
+
+    <!-- 👑 NEW CUSTOM FOOTER -->
+    <footer class="footer-container">
+      <h2 class="footer-title">CONTACT</h2>
+      
+      <div class="footer-grid">
+        <!-- Column 1: Contact & Status -->
+        <div class="footer-col">
+          <div class="footer-group">
+            <span class="col-label">Email</span>
+            <a href="mailto:sarthakyadav07911@gmail.com" class="footer-link-main">sarthakyadav07911@gmail.com</a>
+          </div>
+
+          <div class="footer-group">
+            <span class="col-label">Currently</span>
+            <p class="footer-text">Student</p>
+          </div>
+
+          <div class="footer-group">
+            <span class="col-label">Education</span>
+            <p class="footer-text font-bold">Knowledge Tree World School</p>
+          </div>
+        </div>
+
+        <!-- Column 2: Socials & Languages -->
+        <div class="footer-col">
+          <div class="footer-group">
+            <span class="col-label">Social</span>
+            <ul class="social-list">
+              <li>
+                <a href="https://github.com/SarthakYadav-07" target="_blank" rel="noopener noreferrer" class="social-link">
+                  Github <span class="arrow">↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-group">
+            <span class="col-label">Languages</span>
+            <p class="footer-text">Hindi (Native) • English (Fluent) • Hinglish</p>
+          </div>
+        </div>
+
+        <!-- Column 3: Branding & Credits -->
+        <div class="footer-col footer-credits">
+          <p class="credit-text">
+            Designed and Developed by <span class="highlight-name">Sarthak Yadav</span>
+          </p>
+          <p class="copyright">&copy; 2026</p>
+        </div>
       </div>
 
-      <div class="footer-group">
-        <span class="col-label">Languages</span>
-        <p class="footer-text">Hindi (Native) • English (Fluent) • Hinglish</p>
+      <!-- Bottom Brand Icons / Navigation -->
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a href="https://github.com/SarthakYadav-07" target="_blank" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+        </div>
+        
+        <a href="#top" class="back-to-top">
+          RESUME <span class="top-arrow-btn">↑</span>
+        </a>
       </div>
-    </div>
+    </footer>
 
-    <!-- Column 3: Branding & Credits -->
-    <div class="footer-col footer-credits">
-      <p class="credit-text">
-        Designed and Developed by <span class="highlight-name">Sarthak Yadav</span>
-      </p>
-      <p class="copyright">&copy; 2026</p>
-    </div>
-  </div>
+    <script>
+        // 🛷 ADVANCED SCROLL SLIDING OBSERVER
+        const slideElements = document.querySelectorAll('.slide-up, .slide-left, .slide-right, #about');
+        const slideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
 
-  <!-- Bottom Brand Icons / Navigation -->
-  <div class="footer-bottom">
-    <div class="social-icons">
-      <a href="https://github.com/SarthakYadav-07" target="_blank" aria-label="GitHub">
-        <svg class="icon" viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-      </a>
-    </div>
-    
-    <a href="#top" class="back-to-top">
-      RESUME <span class="top-arrow-btn">↑</span>
-    </a>
-  </div>
-</footer>
+        slideElements.forEach(el => slideObserver.observe(el));
+
+        const xrayLens = document.getElementById('xrayLens');
+        document.addEventListener('mousemove', (e) => {
+            xrayLens.style.left = e.clientX + 'px';
+            xrayLens.style.top = e.clientY + 'px';
+            xrayLens.classList.add('active');
+        });
+        document.addEventListener('mouseleave', () => {
+            xrayLens.classList.remove('active');
+        });
+
+        // 🫧 ANTISTRESS BUBBLE POPPER PHYSICS
+        const canvas = document.getElementById('stressCanvas');
+        const ctx = canvas.getContext('2d');
+        const popCounter = document.getElementById('popCount');
+
+        let bubbles = [];
+        let particles = [];
+        let poppedTotal = 0;
+
+        const colors = ['#00f0ff', '#ff0055', '#ffd700', '#7000ff', '#00ff66'];
+
+        class Bubble {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.r = Math.random() * 25 + 20;
+                this.x = Math.random() * (canvas.width - this.r * 2) + this.r;
+                this.y = canvas.height + this.r + Math.random() * 50;
+                this.speed = Math.random() * 1.5 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.swing = Math.random() * 0.05;
+                this.angle = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.y -= this.speed;
+                this.angle += this.swing;
+                this.x += Math.sin(this.angle) * 0.8;
+
+                if (this.y < -this.r) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + '33';
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 2.5;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(this.x - this.r * 0.3, this.y - this.r * 0.3, this.r * 0.2, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.r = Math.random() * 4 + 2;
+                this.vx = (Math.random() - 0.5) * 8;
+                this.vy = (Math.random() - 0.5) * 8;
+                this.alpha = 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.03;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(this.alpha, 0);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 20; i++) {
+            bubbles.push(new Bubble());
+        }
+
+        function handlePop(clickX, clickY) {
+            for (let i = bubbles.length - 1; i >= 0; i--) {
+                const b = bubbles[i];
+                const dist = Math.hypot(clickX - b.x, clickY - b.y);
+
+                if (dist < b.r) {
+                    for (let p = 0; p < 12; p++) {
+                        particles.push(new Particle(b.x, b.y, b.color));
+                    }
+                    poppedTotal++;
+                    popCounter.innerText = poppedTotal;
+                    b.reset();
+                    break;
+                }
+            }
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+            handlePop(x, y);
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            const x = (touch.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+            handlePop(x, y);
+        });
+
+        function animateStressToy() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            bubbles.forEach(b => {
+                b.update();
+                b.draw();
+            });
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateStressToy);
+        }
+
+        animateStressToy();
+    </script>
+
+</body>
+</html>
