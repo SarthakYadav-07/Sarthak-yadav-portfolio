@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarthak Yadav | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #3b82f6; /* Modern Tech Blue */
+            --accent: #8b5cf6;  /* Creative Purple */
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* 🧭 NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* 🚀 HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .tag-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* 🌟 SECTIONS */
+        .section {
+            padding: 90px 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* 💬 FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🧭 NAVIGATION -->
+    <nav>
+        <div class="logo">SARTHAK <span>YADAV</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#fields">Focus Areas</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- 🚀 HERO SECTION -->
+    <section class="hero">
+        <h1>Sarthak Yadav</h1>
+        <p>Software Developer, Creative Technologist & Digital Artist building impactful modern experiences.</p>
+        <div class="tag-container">
+            <div class="tag">💻 Software Engineering</div>
+            <div class="tag">🎨 Digital Art & Design</div>
+            <div class="tag">🎮 Interactive Media & Gaming</div>
+            <div class="tag">⛩️ Japanese Visual Culture</div>
+        </div>
+    </section>
+
+    <!-- 🌟 FOCUS AREAS -->
+    <section class="section" id="fields">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>💻 Software Development</h3>
+                <p>Designing modern, scalable Web applications and solving complex algorithmic problems with clean code.</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Digital Art & Visual Design</h3>
+                <p>Creating expressive digital illustrations, UI/UX concepts, and artwork inspired by modern animation.</p>
+            </div>
+            <div class="card">
+                <h3>🎮 Strategic & Interactive Gaming</h3>
+                <p>Analyzing game mechanics, competitive strategy, and real-time decision-making systems.</p>
+            </div>
+            <div class="card">
+                <h3>⛩️ Anime & Cultural Aesthetics</h3>
+                <p>Studying storytelling, character development, and cinematography in world-class Japanese animation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 💬 FOOTER -->
+    <footer>
+        <p>© Sarthak Yadav | Portfolio prepared for Academic Applications 🚀</p>
+    </footer>
+
+</body>
+</html>
