@@ -467,6 +467,7 @@
             line-height: 1.6;
         }
 
+        /* ✨ STATS TAGS HIDDEN UNTIL HOVER ✨ */
         .stats-tag {
             margin-top: 15px;
             padding-top: 12px;
@@ -477,6 +478,21 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            
+            /* Hidden by default */
+            opacity: 0;
+            transform: translateY(15px);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* SHOW STATS ON HOVER */
+        .medal-card:hover .stats-tag {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 120px; /* Expands smoothly */
+            margin-top: 15px;
         }
 
         .stat-badge {
@@ -524,6 +540,12 @@
 
         @media (hover: none) {
             .xray-lens { display: none; }
+            /* Mobile Fallback: keep stats visible on mobile touch */
+            .stats-tag {
+                opacity: 1;
+                transform: translateY(0);
+                max-height: none;
+            }
         }
 
         @media (max-width: 900px) {
