@@ -44,11 +44,12 @@
 
         .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--primary);
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         .nav-email {
@@ -491,7 +492,7 @@
         .medal-card:hover .stats-tag {
             opacity: 1;
             transform: translateY(0);
-            max-height: 120px; /* Expands smoothly */
+            max-height: 120px;
             margin-top: 15px;
         }
 
@@ -540,7 +541,6 @@
 
         @media (hover: none) {
             .xray-lens { display: none; }
-            /* Mobile Fallback: keep stats visible on mobile touch */
             .stats-tag {
                 opacity: 1;
                 transform: translateY(0);
@@ -584,7 +584,7 @@
     <div class="xray-lens" id="xrayLens"></div>
 
     <nav>
-        <div class="logo">SARTHAK.DEV</div>
+        <div class="logo">SARTHAK YADAV'S PORTFOLIO</div>
         <a href="mailto:sarthakyadav07911@gmail.com" class="nav-email">sarthakyadav07911@gmail.com</a>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -592,7 +592,6 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#olympiads">Olympiads</a></li>
-            <li><a href="#minigame">Antistress Zone</a></li>
         </ul>
     </nav>
 
@@ -913,7 +912,7 @@
                 ctx.save();
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = this.color + '33'; // translucent
+                ctx.fillStyle = this.color + '33';
                 ctx.strokeStyle = this.color;
                 ctx.lineWidth = 2.5;
                 ctx.shadowBlur = 12;
@@ -921,7 +920,6 @@
                 ctx.fill();
                 ctx.stroke();
 
-                // Highlight gloss on bubble
                 ctx.beginPath();
                 ctx.arc(this.x - this.r * 0.3, this.y - this.r * 0.3, this.r * 0.2, 0, Math.PI * 2);
                 ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
@@ -960,7 +958,6 @@
             }
         }
 
-        // Spawn initial bubbles
         for (let i = 0; i < 20; i++) {
             bubbles.push(new Bubble());
         }
@@ -971,7 +968,6 @@
                 const dist = Math.hypot(clickX - b.x, clickY - b.y);
 
                 if (dist < b.r) {
-                    // Create burst particles
                     for (let p = 0; p < 12; p++) {
                         particles.push(new Particle(b.x, b.y, b.color));
                     }
@@ -1002,13 +998,11 @@
         function animateStressToy() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Update & draw bubbles
             bubbles.forEach(b => {
                 b.update();
                 b.draw();
             });
 
-            // Update & draw particles
             for (let i = particles.length - 1; i >= 0; i--) {
                 const p = particles[i];
                 p.update();
