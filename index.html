@@ -118,11 +118,18 @@
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
             line-height: 1.1;
+            animation: nameShift 4s linear infinite;
+        }
+
+        @keyframes nameShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .tag-container {
