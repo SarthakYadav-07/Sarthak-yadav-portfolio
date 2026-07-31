@@ -25,6 +25,8 @@
             --secondary: #ff0055;
             --bg-dark: #0d0e15;
             --card-bg: #131521;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
         }
 
         nav {
@@ -288,7 +290,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -340,7 +342,6 @@
             gap: 10px;
         }
 
-        /* Glowing Node Dots */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -415,6 +416,77 @@
             font-weight: 500;
         }
 
+        /* 🏆 OLYMPIADS SHOWCASE SECTION */
+        .olympiad-section {
+            padding: 80px 10%;
+            background: rgba(19, 21, 33, 0.4);
+        }
+
+        .medal-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .medal-card.gold-border {
+            border-color: rgba(255, 215, 0, 0.4);
+        }
+
+        .medal-card.gold-border:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+        }
+
+        .medal-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+        }
+
+        .medal-badge {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .medal-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .medal-card p {
+            color: #a0a0b5;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .stats-tag {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stat-badge {
+            background: rgba(0, 240, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
         footer {
             text-align: center;
             padding: 40px;
@@ -431,8 +503,8 @@
         /* 🔦 SMALLER X-RAY INVERT LENS */
         .xray-lens {
             position: fixed;
-            width: 150px; /* Reduced from 150px to 70px */
-            height: 150px; /* Reduced from 150px to 70px */
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -498,6 +570,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#olympiads">Olympiads</a></li>
         </ul>
     </nav>
 
@@ -514,6 +587,7 @@
                     <h1>SARTHAK YADAV</h1>
                 </div>
                 <div class="tag-container">
+                    <div class="tag">🏆 Olympiad Scholar</div>
                     <div class="tag">💻 Software Engineer</div>
                     <div class="tag">🎨 Digital Artist</div>
                     <div class="tag">🎮 Competitive Gamer</div>
@@ -523,13 +597,12 @@
 
             <div class="content-block" id="about">
                 <div class="eyebrow">ABOUT ME</div>
-                <h3 class="about-heading">I build clean, fast, good-looking software — and the visuals that go with it.</h3>
+                <h3 class="about-heading">I build clean, fast, good-looking software — and crush academic competitions.</h3>
                 <p class="about-text">
-                    I'm a software engineer who also creates digital art, so I care as much about how
-                    something looks as how it works. Outside of code, I'm a competitive gamer and an
-                    anime scholar — both of which keep me chasing detail, pacing, and craft.
+                    I'm an Olympiad Scholar and software engineer who also creates digital art. I care as much about precision and logic as I do about visual aesthetics. Outside of academics and code, I'm a competitive gamer and an anime scholar!
                 </p>
                 <div class="pill-row">
+                    <span class="pill">Olympiad Scholar</span>
                     <span class="pill">Full-Stack Development</span>
                     <span class="pill">UI / Digital Art</span>
                     <span class="pill">Competitive Gaming</span>
@@ -543,6 +616,10 @@
     <section class="section" id="skills">
         <h2 class="section-title">WHAT I DO</h2>
         <div class="grid">
+            <div class="card">
+                <h3>🏆 Olympiad Scholar</h3>
+                <p>Consistently competing & excelling in academic Olympiads with high-level analytical problem-solving skills.</p>
+            </div>
             <div class="card">
                 <h3>💻 The Coder</h3>
                 <p>Architecting smooth websites, apps, and logic. Turning complex problems into clean, efficient code.</p>
@@ -591,11 +668,152 @@
                     <div class="timeline-date">2021 – Present</div>
                 </div>
                 <div class="timeline-desc">
-                    Currently pursuing academics and co-curricular activities under the CBSE curriculum. Focusing on coding, creative art, and technology projects! 🚀
+                    Currently pursuing academics and co-curricular activities under the CBSE curriculum. Olympiad Scholar focusing on competitive problem-solving, coding, creative art, and tech projects! 🚀
                     <br>
                     <span class="address-tag">📍 Plot 21, Block M, Vatika INXT, Sector 83, Gurugram, Haryana - 122004</span>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 🏆 OLYMPIAD CERTIFICATES & MEDALS SECTION -->
+    <section class="olympiad-section" id="olympiads">
+        <h2 class="section-title">OLYMPIADS & HONORS</h2>
+        <div class="grid">
+
+            <!-- SOF NSO 2023-24 -->
+            <div class="medal-card gold-border">
+                <div>
+                    <div class="medal-badge">🥇</div>
+                    <h3>SOF National Science Olympiad</h3>
+                    <p>Awarded Gold Medal of Excellence for performance at the school level in Class 3rd!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">School Rank: 2</span>
+                    <span class="stat-badge">Zonal Rank: 190</span>
+                    <span class="stat-badge">Intl Rank: 296</span>
+                </div>
+            </div>
+
+            <!-- SilverZone Reasoning 2024-25 -->
+            <div class="medal-card gold-border">
+                <div>
+                    <div class="medal-badge">🌟</div>
+                    <h3>Intl. Reasoning & Aptitude (2024-25)</h3>
+                    <p>SilverZone Foundation (Class 4th) - Special Achievement Certificate for securing 1st Position in class!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 1st</span>
+                    <span class="stat-badge">Score: 61.02 / 100</span>
+                    <span class="stat-badge">State Rank: 168</span>
+                </div>
+            </div>
+
+            <!-- SilverZone Math 2022-23 -->
+            <div class="medal-card gold-border">
+                <div>
+                    <div class="medal-badge">🥈</div>
+                    <h3>Intl. Olympiad of Math (2022-23)</h3>
+                    <p>SilverZone Foundation (Class 2nd) - Special Achievement Certificate for securing 2nd Position in class with an incredible score!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 2nd</span>
+                    <span class="stat-badge">Score: 91.53 / 100</span>
+                    <span class="stat-badge">State Rank: 123</span>
+                </div>
+            </div>
+
+            <!-- SilverZone Math 2023-24 -->
+            <div class="medal-card">
+                <div>
+                    <div class="medal-badge">🥈</div>
+                    <h3>Intl. Olympiad of Math (2023-24)</h3>
+                    <p>SilverZone Foundation (Class 3rd) - Special Achievement Certificate securing 2nd Position in class!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 2nd</span>
+                    <span class="stat-badge">Score: 58.52 / 100</span>
+                    <span class="stat-badge">Zonal Rank: 2,821</span>
+                </div>
+            </div>
+
+            <!-- Table Tennis 1st Position -->
+            <div class="medal-card gold-border">
+                <div>
+                    <div class="medal-badge">🏓</div>
+                    <h3>Table Tennis Tournament (2023-24)</h3>
+                    <p>Knowledge Tree World School - Awarded Certificate of Merit for securing 1st Position!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class 3rd</span>
+                    <span class="stat-badge">1st Position 🏆</span>
+                </div>
+            </div>
+
+            <!-- French Event 2nd Position -->
+            <div class="medal-card">
+                <div>
+                    <div class="medal-badge">🇫🇷</div>
+                    <h3>French Language Event (2025-26)</h3>
+                    <p>Knowledge Tree World School - Awarded Certificate of Merit for securing 2nd Position!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class V-A</span>
+                    <span class="stat-badge">2nd Position 🥈</span>
+                </div>
+            </div>
+
+            <!-- Chess Tournament -->
+            <div class="medal-card">
+                <div>
+                    <div class="medal-badge">♟️</div>
+                    <h3>Sapient Chess Club Tournament</h3>
+                    <p>Knowledge Tree World School (2024) - Competed in Category 2 Chess Tournament!</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class 4th</span>
+                    <span class="stat-badge">Chess Club Member</span>
+                </div>
+            </div>
+
+            <!-- SilverZone English 2023-24 -->
+            <div class="medal-card">
+                <div>
+                    <div class="medal-badge">📚</div>
+                    <h3>Intl. English Olympiad (2023-24)</h3>
+                    <p>SilverZone Foundation (Class 3rd) - Certificate of Participation in English Language Olympiad.</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 5th</span>
+                    <span class="stat-badge">Score: 67.03 / 100</span>
+                </div>
+            </div>
+
+            <!-- SilverZone English 2024-25 -->
+            <div class="medal-card">
+                <div>
+                    <div class="medal-badge">📖</div>
+                    <h3>Intl. English Olympiad (2024-25)</h3>
+                    <p>SilverZone Foundation (Class 4th) - Certificate of Participation in English Language Olympiad.</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">Class Rank: 4th</span>
+                    <span class="stat-badge">Score: 55.02 / 100</span>
+                </div>
+            </div>
+
+            <!-- SOF NSO 2024-25 -->
+            <div class="medal-card">
+                <div>
+                    <div class="medal-badge">🔬</div>
+                    <h3>SOF National Science Olympiad (2024-25)</h3>
+                    <p>Class 4th Participation in the worldwide SOF Science Olympiad platform.</p>
+                </div>
+                <div class="stats-tag">
+                    <span class="stat-badge">SOF Olympiad Scholar</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
