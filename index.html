@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -570,6 +570,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#olympiads">Olympiads</a></li>
+            <li><a href="#minigame">Mini Arcade</a></li>
         </ul>
     </nav>
 
@@ -810,6 +811,20 @@
         </div>
     </section>
 
+    <!-- 🎮 MINI GAME SECTION -->
+    <section class="section" id="minigame" style="text-align: center;">
+        <h2 class="section-title">MINI ARCADE ⚡️</h2>
+        <p style="color: #a0a0b5; margin-bottom: 20px;">Press <strong>SPACEBAR</strong> or <strong>TAP SCREEN</strong> to Jump!</p>
+        
+        <div style="position: relative; max-width: 600px; margin: 0 auto; border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0,240,255,0.2);">
+            <canvas id="gameCanvas" width="600" height="200" style="background: #0d0e15; display: block; width: 100%;"></canvas>
+            <div id="gameOverScreen" style="display: none; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10,10,15,0.85); flex-direction: column; justify-content: center; align-items: center; gap: 15px;">
+                <h3 style="color: var(--secondary); font-family: 'Space Grotesk', sans-serif; font-size: 2rem;">GAME OVER! 💥</h3>
+                <button onclick="restartGame()" style="background: var(--primary); color: #000; font-weight: 700; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Poppins';">PLAY AGAIN 🔄</button>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>Crafted by <span>Sarthak Yadav</span> • Powered by pure hype & caffeine 🧋⚡️</p>
     </footer>
@@ -836,6 +851,141 @@
         document.addEventListener('mouseleave', () => {
             xrayLens.classList.remove('active');
         });
+
+        // 🎮 MINI GAME LOGIC
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameOverScreen = document.getElementById('gameOverScreen');
+
+        let isPlaying = true;
+        let score = 0;
+        let frame = 0;
+
+        const player = {
+            x: 50,
+            y: 130,
+            width: 30,
+            height: 40,
+            vy: 0,
+            gravity: 0.8,
+            jumpPower: -12,
+            isGrounded: true
+        };
+
+        let obstacles = [];
+
+        function jump() {
+            if (player.isGrounded && isPlaying) {
+                player.vy = player.jumpPower;
+                player.isGrounded = false;
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                jump();
+            }
+        });
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            jump();
+        });
+
+        function spawnObstacle() {
+            if (frame % 100 === 0) {
+                obstacles.push({
+                    x: canvas.width,
+                    y: 140,
+                    width: 20,
+                    height: 30,
+                    speed: 5
+                });
+            }
+        }
+
+        function updateGame() {
+            if (!isPlaying) return;
+
+            frame++;
+            score++;
+
+            // Physics
+            player.vy += player.gravity;
+            player.y += player.vy;
+
+            if (player.y >= 130) {
+                player.y = 130;
+                player.vy = 0;
+                player.isGrounded = true;
+            }
+
+            // Obstacles
+            spawnObstacle();
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].x -= obstacles[i].speed;
+
+                // Collision Check
+                if (
+                    player.x < obstacles[i].x + obstacles[i].width &&
+                    player.x + player.width > obstacles[i].x &&
+                    player.y < obstacles[i].y + obstacles[i].height &&
+                    player.y + player.height > obstacles[i].y
+                ) {
+                    isPlaying = false;
+                    gameOverScreen.style.display = 'flex';
+                }
+            }
+
+            // Filter out offscreen
+            obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+
+            drawGame();
+            requestAnimationFrame(updateGame);
+        }
+
+        function drawGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Ground line
+            ctx.strokeStyle = '#00f0ff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, 170);
+            ctx.lineTo(canvas.width, 170);
+            ctx.stroke();
+
+            // Player (Cyber Neon Box / Hero)
+            ctx.fillStyle = '#00f0ff';
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#00f0ff';
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+
+            // Obstacles (Red Glitch Spikes)
+            ctx.fillStyle = '#ff0055';
+            ctx.shadowColor = '#ff0055';
+            obstacles.forEach(obs => {
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            });
+
+            // Score
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '16px Space Grotesk';
+            ctx.fillText(`SCORE: ${score}`, 20, 30);
+        }
+
+        function restartGame() {
+            obstacles = [];
+            score = 0;
+            frame = 0;
+            isPlaying = true;
+            gameOverScreen.style.display = 'none';
+            updateGame();
+        }
+
+        // Start game loop
+        updateGame();
     </script>
 
 </body>
