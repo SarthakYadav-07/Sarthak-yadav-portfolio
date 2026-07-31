@@ -570,7 +570,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#olympiads">Olympiads</a></li>
-            <li><a href="#minigame">Mini Arcade</a></li>
+            <li><a href="#minigame">Antistress Zone</a></li>
         </ul>
     </nav>
 
@@ -811,16 +811,15 @@
         </div>
     </section>
 
-    <!-- 🎮 MINI GAME SECTION -->
+    <!-- 🫧 ANTISTRESS FIDGET TOY SECTION -->
     <section class="section" id="minigame" style="text-align: center;">
-        <h2 class="section-title">MINI ARCADE ⚡️</h2>
-        <p style="color: #a0a0b5; margin-bottom: 20px;">Press <strong>SPACEBAR</strong> or <strong>TAP SCREEN</strong> to Jump!</p>
+        <h2 class="section-title">ANTISTRESS ZONE 🫧</h2>
+        <p style="color: #a0a0b5; margin-bottom: 20px;">Click or tap the floating bubbles to pop them & release stress! ✨</p>
         
-        <div style="position: relative; max-width: 600px; margin: 0 auto; border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0,240,255,0.2);">
-            <canvas id="gameCanvas" width="600" height="200" style="background: #0d0e15; display: block; width: 100%;"></canvas>
-            <div id="gameOverScreen" style="display: none; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10,10,15,0.85); flex-direction: column; justify-content: center; align-items: center; gap: 15px;">
-                <h3 style="color: var(--secondary); font-family: 'Space Grotesk', sans-serif; font-size: 2rem;">GAME OVER! 💥</h3>
-                <button onclick="restartGame()" style="background: var(--primary); color: #000; font-weight: 700; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-family: 'Poppins';">PLAY AGAIN 🔄</button>
+        <div style="position: relative; max-width: 700px; margin: 0 auto; border: 2px solid var(--primary); border-radius: 16px; overflow: hidden; box-shadow: 0 0 25px rgba(0,240,255,0.25);">
+            <canvas id="stressCanvas" width="700" height="350" style="background: #0d0e15; display: block; width: 100%; cursor: pointer;"></canvas>
+            <div style="position: absolute; bottom: 12px; right: 20px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--primary);">
+                POPPED: <span id="popCount" style="font-weight: 800; color: #fff;">0</span> 💥
             </div>
         </div>
     </section>
@@ -852,140 +851,155 @@
             xrayLens.classList.remove('active');
         });
 
-        // 🎮 MINI GAME LOGIC
-        const canvas = document.getElementById('gameCanvas');
+        // 🫧 ANTISTRESS BUBBLE POPPER PHYSICS
+        const canvas = document.getElementById('stressCanvas');
         const ctx = canvas.getContext('2d');
-        const gameOverScreen = document.getElementById('gameOverScreen');
+        const popCounter = document.getElementById('popCount');
 
-        let isPlaying = true;
-        let score = 0;
-        let frame = 0;
+        let bubbles = [];
+        let particles = [];
+        let poppedTotal = 0;
 
-        const player = {
-            x: 50,
-            y: 130,
-            width: 30,
-            height: 40,
-            vy: 0,
-            gravity: 0.8,
-            jumpPower: -12,
-            isGrounded: true
-        };
+        const colors = ['#00f0ff', '#ff0055', '#ffd700', '#7000ff', '#00ff66'];
 
-        let obstacles = [];
-
-        function jump() {
-            if (player.isGrounded && isPlaying) {
-                player.vy = player.jumpPower;
-                player.isGrounded = false;
-            }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
-                e.preventDefault();
-                jump();
-            }
-        });
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            jump();
-        });
-
-        function spawnObstacle() {
-            if (frame % 100 === 0) {
-                obstacles.push({
-                    x: canvas.width,
-                    y: 140,
-                    width: 20,
-                    height: 30,
-                    speed: 5
-                });
-            }
-        }
-
-        function updateGame() {
-            if (!isPlaying) return;
-
-            frame++;
-            score++;
-
-            // Physics
-            player.vy += player.gravity;
-            player.y += player.vy;
-
-            if (player.y >= 130) {
-                player.y = 130;
-                player.vy = 0;
-                player.isGrounded = true;
+        class Bubble {
+            constructor() {
+                this.reset();
             }
 
-            // Obstacles
-            spawnObstacle();
-            for (let i = 0; i < obstacles.length; i++) {
-                obstacles[i].x -= obstacles[i].speed;
+            reset() {
+                this.r = Math.random() * 25 + 20;
+                this.x = Math.random() * (canvas.width - this.r * 2) + this.r;
+                this.y = canvas.height + this.r + Math.random() * 50;
+                this.speed = Math.random() * 1.5 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.swing = Math.random() * 0.05;
+                this.angle = Math.random() * Math.PI * 2;
+            }
 
-                // Collision Check
-                if (
-                    player.x < obstacles[i].x + obstacles[i].width &&
-                    player.x + player.width > obstacles[i].x &&
-                    player.y < obstacles[i].y + obstacles[i].height &&
-                    player.y + player.height > obstacles[i].y
-                ) {
-                    isPlaying = false;
-                    gameOverScreen.style.display = 'flex';
+            update() {
+                this.y -= this.speed;
+                this.angle += this.swing;
+                this.x += Math.sin(this.angle) * 0.8;
+
+                if (this.y < -this.r) {
+                    this.reset();
                 }
             }
 
-            // Filter out offscreen
-            obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + '33'; // translucent
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 2.5;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.stroke();
 
-            drawGame();
-            requestAnimationFrame(updateGame);
+                // Highlight gloss on bubble
+                ctx.beginPath();
+                ctx.arc(this.x - this.r * 0.3, this.y - this.r * 0.3, this.r * 0.2, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.fill();
+                ctx.restore();
+            }
         }
 
-        function drawGame() {
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.r = Math.random() * 4 + 2;
+                this.vx = (Math.random() - 0.5) * 8;
+                this.vy = (Math.random() - 0.5) * 8;
+                this.alpha = 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.03;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(this.alpha, 0);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Spawn initial bubbles
+        for (let i = 0; i < 20; i++) {
+            bubbles.push(new Bubble());
+        }
+
+        function handlePop(clickX, clickY) {
+            for (let i = bubbles.length - 1; i >= 0; i--) {
+                const b = bubbles[i];
+                const dist = Math.hypot(clickX - b.x, clickY - b.y);
+
+                if (dist < b.r) {
+                    // Create burst particles
+                    for (let p = 0; p < 12; p++) {
+                        particles.push(new Particle(b.x, b.y, b.color));
+                    }
+                    poppedTotal++;
+                    popCounter.innerText = poppedTotal;
+                    b.reset();
+                    break;
+                }
+            }
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+            handlePop(x, y);
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            const x = (touch.clientX - rect.left) * (canvas.width / rect.width);
+            const y = (touch.clientY - rect.top) * (canvas.height / rect.height);
+            handlePop(x, y);
+        });
+
+        function animateStressToy() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Ground line
-            ctx.strokeStyle = '#00f0ff';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(0, 170);
-            ctx.lineTo(canvas.width, 170);
-            ctx.stroke();
-
-            // Player (Cyber Neon Box / Hero)
-            ctx.fillStyle = '#00f0ff';
-            ctx.shadowBlur = 10;
-            ctx.shadowColor = '#00f0ff';
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-
-            // Obstacles (Red Glitch Spikes)
-            ctx.fillStyle = '#ff0055';
-            ctx.shadowColor = '#ff0055';
-            obstacles.forEach(obs => {
-                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            // Update & draw bubbles
+            bubbles.forEach(b => {
+                b.update();
+                b.draw();
             });
 
-            // Score
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '16px Space Grotesk';
-            ctx.fillText(`SCORE: ${score}`, 20, 30);
+            // Update & draw particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateStressToy);
         }
 
-        function restartGame() {
-            obstacles = [];
-            score = 0;
-            frame = 0;
-            isPlaying = true;
-            gameOverScreen.style.display = 'none';
-            updateGame();
-        }
-
-        // Start game loop
-        updateGame();
+        animateStressToy();
     </script>
 
 </body>
