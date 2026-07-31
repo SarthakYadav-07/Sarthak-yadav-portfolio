@@ -271,10 +271,22 @@
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.5rem;
-            margin-bottom: 12px;
+            margin-bottom: 5px;
             text-align: center;
             color: #fff;
             position: relative;
+        }
+
+        /* 💥 SUB-HEADER FOR MY UNDER WHAT I DO */
+        .section-sub-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
         }
 
         .section-subtitle {
@@ -335,7 +347,73 @@
             line-height: 1.6;
         }
 
-        /* 🎓 TIMELINE SECTION */
+        .work-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 35px rgba(0, 240, 255, 0.2);
+        }
+
+        .work-badge {
+            display: inline-block;
+            background: rgba(255, 0, 85, 0.15);
+            color: var(--secondary);
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .work-tech-stack {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
+
+        .work-tech-item {
+            background: rgba(0, 240, 255, 0.08);
+            color: var(--primary);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .work-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .work-link:hover {
+            color: var(--primary);
+            transform: translateX(6px);
+        }
+
         .timeline-section {
             padding: 100px 10%;
             position: relative;
@@ -431,7 +509,6 @@
             font-weight: 500;
         }
 
-        /* 🏆 OLYMPIADS SHOWCASE SECTION */
         .olympiad-section {
             padding: 80px 10%;
             background: rgba(19, 21, 33, 0.4);
@@ -483,7 +560,6 @@
             line-height: 1.6;
         }
 
-        /* ✨ STATS TAGS HIDDEN UNTIL HOVER ✨ */
         .stats-tag {
             margin-top: 15px;
             padding-top: 12px;
@@ -494,8 +570,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            
-            /* Hidden by default */
             opacity: 0;
             transform: translateY(15px);
             max-height: 0;
@@ -503,7 +577,6 @@
             transition: all 0.4s ease-in-out;
         }
 
-        /* SHOW STATS ON HOVER */
         .medal-card:hover .stats-tag {
             opacity: 1;
             transform: translateY(0);
@@ -531,7 +604,6 @@
             color: var(--secondary);
         }
 
-        /* 🔦 SMALLER X-RAY INVERT LENS */
         .xray-lens {
             position: fixed;
             width: 70px;
@@ -605,6 +677,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">What I Do</a></li>
+            <li><a href="#work">My Work</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#olympiads">Olympiads</a></li>
         </ul>
@@ -651,6 +724,7 @@
     <!-- 🛠️ WHAT I DO SECTION -->
     <section class="section" id="skills" style="background: rgba(19, 21, 33, 0.2);">
         <h2 class="section-title">WHAT I DO</h2>
+        <div class="section-sub-heading">MY</div>
         <p class="section-subtitle">Blending creativity, code, and pure inspiration into everything I make.</p>
         <div class="grid">
             <div class="card">
@@ -676,12 +750,66 @@
         </div>
     </section>
 
+    <!-- 💼 MY WORK SECTION -->
+    <section class="section" id="work">
+        <h2 class="section-title">MY WORK & CREATIONS</h2>
+        <p class="section-subtitle">Interactive applications, algorithmic tools, and UI prototypes built with precision.</p>
+
+        <div class="grid">
+            <div class="work-card">
+                <div>
+                    <span class="work-badge">Web Engineering</span>
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff;">Interactive Physics & Stress Engine</h3>
+                    <p style="color: #a0a0b5; font-size: 0.9rem; margin-top: 10px; line-height: 1.6;">
+                        A custom 2D particle & collision engine running real-time canvas animation with interactive touch controls and particle bursts.
+                    </p>
+                    <div class="work-tech-stack">
+                        <span class="work-tech-item">HTML5 Canvas</span>
+                        <span class="work-tech-item">JavaScript</span>
+                        <span class="work-tech-item">Math Physics</span>
+                    </div>
+                </div>
+                <a href="#minigame" class="work-link">Launch Live Demo ➔</a>
+            </div>
+
+            <div class="work-card">
+                <div>
+                    <span class="work-badge">UI/UX Innovation</span>
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff;">Cyberpunk X-Ray Lens Component</h3>
+                    <p style="color: #a0a0b5; font-size: 0.9rem; margin-top: 10px; line-height: 1.6;">
+                        A real-time mouse-tracking Backdrop-Filter lens with active color inversion, glowing matrix borders, and zero-lag DOM listeners.
+                    </p>
+                    <div class="work-tech-stack">
+                        <span class="work-tech-item">CSS Backdrop</span>
+                        <span class="work-tech-item">DOM Math</span>
+                        <span class="work-tech-item">Frontend</span>
+                    </div>
+                </div>
+                <a href="#home" class="work-link">Test Lens Above ➔</a>
+            </div>
+
+            <div class="work-card">
+                <div>
+                    <span class="work-badge">Skill & Data Logic</span>
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; color: #fff;">Mitty Verse Training Matrix</h3>
+                    <p style="color: #a0a0b5; font-size: 0.9rem; margin-top: 10px; line-height: 1.6;">
+                        Gamified logic framework designed to track cognitive problem-solving stats, advanced school extra classes, and academic achievements.
+                    </p>
+                    <div class="work-tech-stack">
+                        <span class="work-tech-item">System Design</span>
+                        <span class="work-tech-item">Gamification</span>
+                    </div>
+                </div>
+                <a href="#education" class="work-link">View Timeline Entry ➔</a>
+            </div>
+        </div>
+    </section>
+
     <!-- 🎓 EDUCATION & JOURNEY SECTION -->
     <section class="timeline-section" id="education">
         <h2 class="section-title">MY EDUCATION & JOURNEY</h2>
         
         <div class="timeline">
-            <!-- Item 1: First Grade -->
             <div class="timeline-item">
                 <div class="timeline-header">
                     <div>
@@ -695,7 +823,6 @@
                 </div>
             </div>
 
-            <!-- Item 2: Knowledge Tree World School -->
             <div class="timeline-item">
                 <div class="timeline-header">
                     <div>
@@ -711,7 +838,6 @@
                 </div>
             </div>
 
-            <!-- Item 3: Mitty Verse Extra Classes -->
             <div class="timeline-item">
                 <div class="timeline-header">
                     <div>
@@ -732,7 +858,6 @@
         <h2 class="section-title">OLYMPIADS & HONORS</h2>
         <div class="grid">
 
-            <!-- SOF NSO 2023-24 -->
             <div class="medal-card gold-border">
                 <div>
                     <div class="medal-badge">🥇</div>
@@ -746,7 +871,6 @@
                 </div>
             </div>
 
-            <!-- SilverZone Reasoning 2024-25 -->
             <div class="medal-card gold-border">
                 <div>
                     <div class="medal-badge">🌟</div>
@@ -760,7 +884,6 @@
                 </div>
             </div>
 
-            <!-- SilverZone Math 2022-23 -->
             <div class="medal-card gold-border">
                 <div>
                     <div class="medal-badge">🥈</div>
@@ -774,7 +897,6 @@
                 </div>
             </div>
 
-            <!-- SilverZone Math 2023-24 -->
             <div class="medal-card">
                 <div>
                     <div class="medal-badge">🥈</div>
@@ -788,7 +910,6 @@
                 </div>
             </div>
 
-            <!-- Table Tennis 1st Position -->
             <div class="medal-card gold-border">
                 <div>
                     <div class="medal-badge">🏓</div>
@@ -801,7 +922,6 @@
                 </div>
             </div>
 
-            <!-- French Event 2nd Position -->
             <div class="medal-card">
                 <div>
                     <div class="medal-badge">🇫🇷</div>
@@ -814,7 +934,6 @@
                 </div>
             </div>
 
-            <!-- Chess Tournament -->
             <div class="medal-card">
                 <div>
                     <div class="medal-badge">♟️</div>
@@ -827,7 +946,6 @@
                 </div>
             </div>
 
-            <!-- SilverZone English 2023-24 -->
             <div class="medal-card">
                 <div>
                     <div class="medal-badge">📚</div>
@@ -840,7 +958,6 @@
                 </div>
             </div>
 
-            <!-- SilverZone English 2024-25 -->
             <div class="medal-card">
                 <div>
                     <div class="medal-badge">📖</div>
@@ -853,7 +970,6 @@
                 </div>
             </div>
 
-            <!-- SOF NSO 2024-25 -->
             <div class="medal-card">
                 <div>
                     <div class="medal-badge">🔬</div>
@@ -882,7 +998,7 @@
     </section>
 
     <footer>
-        <p>Crafted by <span>Sarthak Yadav</span> • Powered by pure hype & caffeine 🧋⚡️</p>
+        <p>Crafted by <span>Sarthak Yadav</span> • Future Ivy League Innovator 🎓⚡️</p>
     </footer>
 
     <script>
@@ -897,7 +1013,6 @@
 
         blocks.forEach(block => observer.observe(block));
 
-        // 🔦 X-ray invert lens
         const xrayLens = document.getElementById('xrayLens');
         document.addEventListener('mousemove', (e) => {
             xrayLens.style.left = e.clientX + 'px';
