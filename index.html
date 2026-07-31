@@ -271,10 +271,17 @@
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.5rem;
-            margin-bottom: 40px;
+            margin-bottom: 12px;
             text-align: center;
             color: #fff;
             position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #a0a0b5;
+            font-size: 1rem;
+            margin-bottom: 50px;
         }
 
         .section-title::after {
@@ -290,16 +297,18 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 25px;
         }
 
         .card {
             background: var(--card-bg);
             padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -308,15 +317,21 @@
             box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
 
-        .card h3 {
-            font-size: 1.4rem;
+        .card-icon {
+            font-size: 2.5rem;
             margin-bottom: 15px;
-            color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .card p {
             color: #a0a0b5;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
         }
 
@@ -589,7 +604,8 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#into">What I'm Into</a></li>
+            <li><a href="#skills">What I Do</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#olympiads">Olympiads</a></li>
         </ul>
@@ -633,24 +649,62 @@
         </div>
     </section>
 
-    <section class="section" id="skills">
-        <h2 class="section-title">WHAT I DO</h2>
+    <!-- 🌟 WHAT I'M INTO SECTION -->
+    <section class="section" id="into">
+        <h2 class="section-title">WHAT I'M INTO</h2>
+        <p class="section-subtitle">Four things I spend most of my time on — some on a screen, some on paper.</p>
+        
         <div class="grid">
             <div class="card">
-                <h3>🎨 The Designer</h3>
-                <p>Crafting sleek UI/UX, vibrant visual assets, futuristic layouts, and aesthetics that stand out from the crowd.</p>
+                <div class="card-icon">🎮</div>
+                <h3>Roblox</h3>
+                <p>Building, playing, and grinding whatever's fun that week. Always down to try a new game or trade notes on the best ones out right now.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✏️</div>
+                <h3>Drawing</h3>
+                <p>Characters, doodles, random ideas that show up mid-class. Half my notebooks are more sketches than notes at this point.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Coding</h3>
+                <p>Learning to build stuff that actually works — websites, little scripts, small game ideas. This page is part of that.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Designing</h3>
+                <p>Colors, layouts, logos, UI — figuring out what looks good and why. Basically the art side that pairs with the code side.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🛠️ WHAT I DO SECTION -->
+    <section class="section" id="skills" style="background: rgba(19, 21, 33, 0.2);">
+        <h2 class="section-title">WHAT I DO</h2>
+        <p class="section-subtitle">Blending creativity, code, and pure inspiration into everything I make.</p>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">✏️</div>
+                <h3>Drawing & Art</h3>
+                <p>Sketching characters, doodles, and random creative ideas. Bringing concepts from paper directly into digital form.</p>
             </div>
             <div class="card">
-                <h3>🏆 Olympiad Scholar</h3>
-                <p>Consistently competing & excelling in academic Olympiads with high-level analytical problem-solving skills.</p>
+                <div class="card-icon">💻</div>
+                <h3>Software & Coding</h3>
+                <p>Learning to build stuff that actually works — responsive websites, cool scripts, interactive apps, and clean code.</p>
             </div>
             <div class="card">
-                <h3>💻 The Coder</h3>
-                <p>Architecting smooth websites, apps, and logic. Turning complex problems into clean, efficient code.</p>
+                <div class="card-icon">🎨</div>
+                <h3>UI/UX & Designing</h3>
+                <p>Experimenting with colors, layouts, logos, and user interfaces — figuring out what looks good and why it works.</p>
             </div>
             <div class="card">
-                <h3>⛩️ Anime Scholar</h3>
-                <p>Fuelled by peak animation, insane storylines, epic soundtracks, and non-stop creative inspiration.</p>
+                <div class="card-icon">⛩️</div>
+                <h3>Anime Scholar</h3>
+                <p>Fuelled by peak animation, insane storylines, epic soundtracks, and non-stop creative inspiration for design & storytelling.</p>
             </div>
         </div>
     </section>
