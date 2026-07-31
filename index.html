@@ -51,6 +51,23 @@
             letter-spacing: 2px;
         }
 
+        .nav-email {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #aaa;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-email:hover {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -147,6 +164,7 @@
             position: relative;
         }
 
+        /* soft ambient glow behind the character */
         .hero-avatar::before {
             content: '';
             position: absolute;
@@ -158,15 +176,11 @@
             z-index: 0;
         }
 
-        .avatar-frame {
+        .floating-avatar {
             position: relative;
             z-index: 1;
             width: 100%;
             max-width: 420px;
-        }
-
-        .avatar-frame img {
-            width: 100%;
             height: auto;
             display: block;
             filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.35));
@@ -259,6 +273,7 @@
             .hero-text h1 { font-size: 2.8rem; }
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
+            .nav-email { display: none; }
         }
     </style>
 </head>
@@ -267,6 +282,7 @@
     <!-- 🧭 NAVIGATION -->
     <nav>
         <div class="logo">SARTHAK.DEV</div>
+        <a href="mailto:sarthakyadav07911@gmail.com" class="nav-email">sarthakyadav07911@gmail.com</a>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -289,9 +305,7 @@
         </div>
 
         <div class="hero-avatar">
-            <div class="avatar-frame">
-                <img src="images/avatar.png" alt="Sarthak Yadav Avatar">
-            </div>
+            <img src="images/avatar.png" alt="Sarthak Yadav Avatar" class="floating-avatar">
         </div>
     </section>
 
