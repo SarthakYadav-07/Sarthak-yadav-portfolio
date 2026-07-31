@@ -428,11 +428,11 @@
             color: var(--secondary);
         }
 
-        /* 🔦 X-RAY INVERT LENS */
+        /* 🔦 SMALLER X-RAY INVERT LENS */
         .xray-lens {
             position: fixed;
-            width: 150px;
-            height: 150px;
+            width: 70px; /* Reduced from 150px to 70px */
+            height: 70px; /* Reduced from 150px to 70px */
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -441,10 +441,10 @@
             transform: translate(-50%, -50%);
             backdrop-filter: invert(1) hue-rotate(180deg);
             -webkit-backdrop-filter: invert(1) hue-rotate(180deg);
-            border: 1px solid rgba(0, 240, 255, 0.55);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.35), inset 0 0 25px rgba(0, 240, 255, 0.15);
+            border: 1.5px solid rgba(0, 240, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2);
             opacity: 0;
-            transition: opacity 0.25s ease;
+            transition: opacity 0.2s ease;
         }
 
         .xray-lens.active {
