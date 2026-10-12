@@ -1091,6 +1091,17 @@
         .m-cert .mock .t{font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:6px 0;}
         .m-cert .mock .s{font-size:.78rem;line-height:1.6;}
         body.m-lock{overflow:hidden;}
+        .reel-wrap{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center;}
+        .reel-frame{width:100%;display:flex;justify-content:center;margin-top:10px;}
+        .reel-frame[hidden]{display:none;}
+        .reel-frame iframe{width:min(400px,100%);height:min(620px,80vh);border:1px solid rgba(25,200,255,.35);border-radius:16px;background:#0b0d12;}
+        .reel-wrap{flex-direction:column;align-items:flex-start!important;}
+        .reel-title{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:1.05rem;}
+        .reel-list{display:flex;flex-wrap:wrap;gap:10px;}
+        .reel-item{padding:10px 16px;border-radius:999px;border:1px solid rgba(25,200,255,.35);background:rgba(25,200,255,.07);color:#d6e6f2;font-family:inherit;font-size:.88rem;cursor:pointer;transition:.25s;}
+        .reel-item small{color:#7f8ea0;margin-left:4px;}
+        .reel-item:hover,.reel-item.on{background:#19c8ff;border-color:#19c8ff;color:#04121a;}
+        .reel-item:hover small,.reel-item.on small{color:#04121a;}
     </style>
 </head>
 <body id="top">
@@ -1310,6 +1321,18 @@
                 <span class="ftc-tech-item">💰 Fundraising</span>
                 <span class="ftc-tech-item">🌌 Mitty Verse</span>
                 <span class="ftc-tech-item">🏆 FTC Support</span>
+            </div>
+
+            <div class="reel-wrap">
+                <div class="reel-title">📸 Outreach on Instagram</div>
+                <div class="reel-list" id="reelList">
+                    <button type="button" class="reel-item" data-src="https://www.instagram.com/reel/Dd_umibvELu/embed" data-link="https://www.instagram.com/thisisgurugram/reel/Dd_umibvELu/">▶ @thisisgurugram <small>Reel</small></button>
+                    <button type="button" class="reel-item" data-src="https://www.instagram.com/reel/Dd_dP7QyodM/embed" data-link="https://www.instagram.com/gurgaon_culture/reel/Dd_dP7QyodM/">▶ @gurgaon_culture <small>Reel</small></button>
+                    <button type="button" class="reel-item" data-src="https://www.instagram.com/reel/Dd6GgCJo6S6/embed" data-link="https://www.instagram.com/felixplazaggm/reel/Dd6GgCJo6S6/">▶ @felixplazaggm <small>Reel</small></button>
+                    <button type="button" class="reel-item" data-src="https://www.instagram.com/p/Dd-7BYdFLNA/embed" data-link="https://www.instagram.com/mittyverseofficial/p/Dd-7BYdFLNA/">▶ @mittyverseofficial <small>Post</small></button>
+                </div>
+                <div class="reel-frame" id="reelFrame" hidden></div>
+                <a class="btn ghost" id="reelOpen" href="#" target="_blank" rel="noopener" hidden>Open on Instagram ↗</a>
             </div>
         </div>
     </section>
@@ -2044,6 +2067,20 @@ n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click
   closeB.addEventListener('click',close);
   modal.addEventListener('click',function(e){if(e.target===modal)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
+})();
+</script>
+<script>
+(function(){
+  var list=document.getElementById('reelList');if(!list)return;
+  var f=document.getElementById('reelFrame'),o=document.getElementById('reelOpen'),cur=null;
+  list.addEventListener('click',function(e){
+    var b=e.target.closest('.reel-item');if(!b)return;
+    if(cur===b){f.hidden=true;o.hidden=true;b.classList.remove('on');cur=null;f.textContent='';return;}
+    if(cur)cur.classList.remove('on');
+    cur=b;b.classList.add('on');
+    f.textContent='';var i=document.createElement('iframe');i.src=b.dataset.src;i.allowFullscreen=true;i.title='Instagram embed';f.appendChild(i);
+    f.hidden=false;o.href=b.dataset.link;o.hidden=false;
+  });
 })();
 </script>
 </body>
