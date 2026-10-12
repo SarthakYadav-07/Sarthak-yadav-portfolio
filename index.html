@@ -991,6 +991,30 @@
         .goal:hover{border-color:var(--primary);transform:translateX(6px);}
         .goal b{color:#fff;display:block;margin-bottom:4px;}
         .goal p{color:#a8b4c2;font-size:.95rem;line-height:1.6;}
+        a.tag,a.pill{text-decoration:none;cursor:pointer;}
+        section[id]{scroll-margin-top:80px;}
+        nav{z-index:1000!important;background:#0b0d12!important;padding:14px 32px!important;gap:16px!important;}
+        .nav-links{gap:18px!important;}
+        .nav-links a{font-size:.85rem!important;}
+        @media (max-width:1500px){.nav-email-wrapper{display:none!important;}nav{grid-template-columns:auto 1fr!important;}.nav-links{justify-content:flex-end;}}
+        @media (max-width:1000px){.nav-links{display:none!important;}}
+
+        .logo-wrap{display:flex;flex-direction:column;line-height:1.15;}
+        .logo-sub{font-size:.68rem;color:#8b97a6;letter-spacing:1px;white-space:nowrap;}
+        .hero-text h1{background:linear-gradient(90deg,#19c8ff,#4d7cff,#a06bff,#ff5fa8,#19c8ff)!important;background-size:300% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;animation:nameShift 6s linear infinite!important;}
+        @keyframes nameShift{to{background-position:300% 0}}
+        .flip-line{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:#c8d0d8;margin-top:14px;display:flex;align-items:center;gap:10px;perspective:600px;}
+        .flip-box{display:inline-block;min-width:240px;}
+        .flip-word{display:inline-block;font-weight:700;color:var(--primary);transform-origin:50% 50% -20px;transition:transform .45s ease,opacity .45s ease;}
+        .flip-word.out{transform:rotateX(-90deg);opacity:0;}
+        .flip-word.in{transform:rotateX(90deg);opacity:0;transition:none;}
+        @media(max-width:1250px){.logo-sub{display:none}}
+        .hero-text h1{opacity:1!important;display:block;}
+        .info-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+        .info-chips span{padding:8px 14px;border-radius:999px;font-size:.82rem;color:#d6e6f2;background:rgba(25,200,255,.08);border:1px solid rgba(25,200,255,.25);}
+        .tag-container{margin-top:44px!important;gap:14px!important;}
+        .bio-hook{margin-top:18px!important;}
+        .cta-row{margin-top:30px!important;}
     </style>
 </head>
 <body id="top">
@@ -1000,6 +1024,7 @@
     <canvas id="dust"></canvas>
     <div class="side-rail">
         <a href="https://github.com/SarthakYadav-07" target="_blank" rel="noopener" title="GitHub">&lt;/&gt;</a>
+        <a href="https://www.linkedin.com/in/sarthak-yadav-6b129b442/" target="_blank" rel="noopener" title="LinkedIn">in</a>
         <a href="mailto:sarthakyadav07911@gmail.com" title="Email">✉</a>
     </div>
     <button id="toTop" aria-label="Back to top">↑</button>
@@ -1007,7 +1032,7 @@
     <div class="xray-lens" id="xrayLens"></div>
 
     <nav>
-        <div class="logo">SARTHAK YADAV'S PORTFOLIO</div>
+        <div class="logo-wrap"><div class="logo">PORTFOLIO · SARTHAK YADAV</div></div>
         
         <div class="nav-email-wrapper">
             <a href="mailto:sarthakyadav07911@gmail.com" class="nav-email">sarthakyadav07911@gmail.com</a>
@@ -1016,9 +1041,9 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#skills">What I Do</a></li>
-            <li><a href="#robotics">Robotics Project</a></li>
-            <li><a href="#tech-stack">Tech Stack</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#robotics">Projects</a></li>
+            <li><a href="#tech-stack">Tech</a></li>
             <li><a href="#ftc">FTC</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#olympiads">Olympiads</a></li>
@@ -1037,17 +1062,15 @@
                 <div class="hero-text">
                     <h2>Hello I'm</h2>
                     <h1>SARTHAK YADAV</h1>
-                    <div class="role-tag">ROBOTICS &amp; SOFTWARE</div>
-                    <div class="role-stack"><span class="r1">OLYMPIAD</span><span class="r2">SCHOLAR</span></div>
+                    <div class="flip-line">I'm a <span class="flip-box"><span class="flip-word" id="flipWord">Olympiad Scholar</span></span></div>
                     <p class="bio-hook">Building robots, writing code and competing in FTC &amp; Olympiads — one project at a time.</p>
                     <div class="cta-row"><a href="#robotics" class="btn fill">View Projects</a><a href="mailto:sarthakyadav07911@gmail.com" class="btn ghost">Let's Connect</a></div>
-                    <div class="scroll-hint">SCROLL ↓</div>
                 </div>
                 <div class="tag-container">
-                    <div class="tag">🏆 Olympiad Scholar</div>
-                    <div class="tag">🤖 Robotics Engineer</div>
-                    <div class="tag">💻 Software Developer</div>
-                    <div class="tag">🎮 Gamer</div>
+                    <a href="#olympiads" class="tag">🏆 Olympiad Scholar</a>
+                    <a href="#robotics" class="tag">🤖 Robotics Engineer</a>
+                    <a href="#tech-stack" class="tag">💻 Software Developer</a>
+                    <a href="#minigame" class="tag">🎮 Gamer</a>
                 </div>
             </div>
 
@@ -1058,11 +1081,11 @@
                     I'm an Olympiad Scholar, software engineer, and robotics enthusiast. I physically assemble real-world hardware connected with Python AI & computer vision logic. Outside of robotics and coding, I'm a gamer!
                 </p>
                 <div class="pill-row">
-                    <span class="pill">Robotics Assembly</span>
-                    <span class="pill">Olympiad Scholar</span>
-                    <span class="pill">Python & Computer Vision</span>
-                    <span class="pill">Arduino Hardware</span>
-                    <span class="pill">Gaming</span>
+                    <a href="#robotics" class="pill">Robotics Assembly</a>
+                    <a href="#olympiads" class="pill">Olympiad Scholar</a>
+                    <a href="#tech-stack" class="pill">Python & Computer Vision</a>
+                    <a href="#robotics" class="pill">Arduino Hardware</a>
+                    <a href="#minigame" class="pill">Gaming</a>
                 </div>
             </div>
 
@@ -1244,7 +1267,7 @@
                         <h3 class="timeline-role">2nd Grade to 6th Grade</h3>
                         <span class="timeline-institution">🌳 Knowledge Tree World School</span>
                     </div>
-                    <div class="timeline-date">2021 – Present</div>
+                    <div class="timeline-date">2022 – Present</div>
                 </div>
                 <div class="timeline-desc">
                     Currently pursuing academics and co-curricular activities under the CBSE curriculum. Olympiad Scholar focusing on competitive problem-solving, coding, robotics, and tech projects! 🚀
@@ -1457,6 +1480,11 @@
               <li>
                 <a href="https://github.com/SarthakYadav-07" target="_blank" rel="noopener noreferrer" class="social-link">
                   Github <span class="arrow">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/sarthak-yadav-6b129b442/" target="_blank" rel="noopener noreferrer" class="social-link">
+                  LinkedIn <span class="arrow">↗</span>
                 </a>
               </li>
             </ul>
@@ -1795,6 +1823,21 @@
       el.addEventListener('mouseleave',function(){el.style.transform='';});
     });
   }
+})();
+</script>
+
+<script>
+(function(){
+  var w=document.getElementById('flipWord');if(!w)return;
+  var L=[['Olympiad Scholar','#19c8ff'],['Robotics Engineer','#4d7cff'],['Software Developer','#a06bff'],['Gamer','#ff5fa8'],['FTC Hardware Member','#3de0b0']],i=0;
+  setInterval(function(){
+    w.classList.add('out');
+    setTimeout(function(){
+      i=(i+1)%L.length;w.textContent=L[i][0];w.style.color=L[i][1];
+      w.classList.remove('out');w.classList.add('in');
+      void w.offsetWidth;w.classList.remove('in');
+    },450);
+  },2200);
 })();
 </script>
 </body>
