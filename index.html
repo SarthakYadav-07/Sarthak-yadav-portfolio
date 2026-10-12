@@ -886,7 +886,6 @@
         }
 
         @media (hover: none) {
-            .xray-lens { display: none; }
             .stats-tag {
                 opacity: 1;
                 transform: translateY(0);
@@ -938,7 +937,7 @@
         #loader.done{opacity:0;visibility:hidden;}
         #loader .ld-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.6rem,5vw,3rem);letter-spacing:6px;color:var(--primary);}
         #loader .ld-bar{width:min(260px,60vw);height:3px;background:#232c3b;border-radius:2px;overflow:hidden;}
-        #loader .ld-bar i{display:block;height:100%;width:0;background:var(--primary);animation:ld 1.3s ease forwards;}
+        #loader .ld-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#19c8ff,#a06bff);}
         @keyframes ld{to{width:100%}}
         #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--primary);z-index:100000;}
         #dust{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;}
@@ -1015,17 +1014,118 @@
         .tag-container{margin-top:44px!important;gap:14px!important;}
         .bio-hook{margin-top:18px!important;}
         .cta-row{margin-top:30px!important;}
+        .ld-gear{font-size:3rem;animation:spin 2s linear infinite;}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .ld-term{font-family:'Space Mono',monospace;font-size:.85rem;color:#8fd9f5;min-height:7.2em;width:min(340px,80vw);line-height:1.8;text-align:left;}
+        .ld-term div{opacity:0;animation:ldin .3s forwards;}
+        .ld-term div::before{content:'> ';color:#4d7cff;}
+        @keyframes ldin{to{opacity:1}}
+        .ld-pct{font-family:'Space Grotesk',sans-serif;color:#c8d0d8;font-size:.9rem;}
+        .ld-skip{font-size:.7rem;color:#566273;letter-spacing:2px;cursor:pointer;}
+        #loader{cursor:pointer;}
+        .menu-btn{display:none;background:none;border:1px solid #3a4856;color:#e6edf3;border-radius:8px;width:42px;height:38px;font-size:1.2rem;cursor:pointer;justify-self:end;}
+        @media (pointer: coarse){.xray-lens{width:56px;height:56px;}}
+        @media (max-width:1000px){
+            .menu-btn{display:block;}
+            nav{grid-template-columns:1fr auto!important;}
+            .nav-links{display:none!important;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0!important;background:#0b0d12;border-bottom:1px solid #232c3b;padding:8px 0;}
+            nav.open .nav-links{display:flex!important;}
+            .nav-links li a{display:block;padding:14px 28px;font-size:1rem!important;}
+        }
+        @media (max-width:600px){
+            .logo{font-size:.95rem!important;}
+            .section{padding:70px 6%!important;}
+            .profile{padding:100px 6% 0 6%!important;}
+            .hero-text h1{font-size:2.2rem!important;}
+            .flip-line{font-size:1.15rem;}
+            .flip-box{min-width:0;}
+        }
+        img,canvas,video{max-width:100%;}
+
+        /* 💻 CLI TERMINAL */
+        #toTop{bottom:82px!important;}
+        #termBtn{position:fixed;right:20px;bottom:22px;width:48px;height:48px;border-radius:12px;border:1px solid #19c8ff;background:#10141c;color:#19c8ff;font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;cursor:pointer;z-index:1100;transition:.25s;}
+        #termBtn:hover{transform:translateY(-3px);box-shadow:0 0 18px rgba(25,200,255,.45);}
+        #termBtn.hide{opacity:0;pointer-events:none;}
+        #term{position:fixed;right:20px;bottom:22px;width:min(520px,calc(100vw - 24px));height:min(380px,60vh);background:rgba(11,13,18,.96);border:1px solid rgba(25,200,255,.45);border-radius:14px;z-index:1200;display:flex;flex-direction:column;overflow:hidden;font-family:'Space Mono',monospace;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 20px rgba(25,200,255,.15);transform:translateY(24px) scale(.96);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease;}
+        #term.open{transform:none;opacity:1;pointer-events:auto;}
+        .term-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#141a26;border-bottom:1px solid rgba(25,200,255,.25);font-size:.78rem;color:#8fd9f5;letter-spacing:1px;}
+        .term-bar .dots{display:flex;gap:6px;}
+        .term-bar .dots i{width:10px;height:10px;border-radius:50%;background:#3a4856;display:block;}
+        .term-bar .ttl{flex:1;text-align:center;}
+        .term-bar button{background:none;border:1px solid #3a4856;color:#c8d0d8;border-radius:6px;width:26px;height:24px;cursor:pointer;font-family:inherit;}
+        .term-bar button:hover{border-color:#19c8ff;color:#19c8ff;}
+        #termOut{flex:1;overflow-y:auto;padding:12px 14px;font-size:.8rem;line-height:1.65;color:#c8d6e2;white-space:pre-wrap;word-break:break-word;}
+        #termOut .c{color:#19c8ff;}
+        #termOut .m{color:#7f8ea0;}
+        #termOut .e{color:#ff6b8a;}
+        .term-in{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid rgba(25,200,255,.2);background:#10141c;}
+        .term-in span{color:#19c8ff;font-size:.8rem;white-space:nowrap;}
+        #termInput{flex:1;background:none;border:none;outline:none;color:#e6f6ff;font-family:inherit;font-size:.85rem;caret-color:#19c8ff;min-width:0;}
+
+        /* 🏅 MEDAL MODAL */
+        .medal-card{cursor:pointer;position:relative;}
+        .medal-card::after{content:'Click for details ↗';position:absolute;right:16px;bottom:12px;font-size:.7rem;letter-spacing:1px;color:#19c8ff;opacity:0;transition:.25s;}
+        .medal-card:hover::after,.medal-card:focus-visible::after{opacity:.9;}
+        .medal-card:focus-visible{outline:2px solid #19c8ff;outline-offset:3px;}
+        #mModal{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(5,8,14,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s;}
+        #mModal.open{opacity:1;visibility:visible;}
+        .m-panel{position:relative;width:min(760px,100%);max-height:90vh;overflow-y:auto;border-radius:22px;padding:34px;background:linear-gradient(145deg,rgba(25,34,52,.78),rgba(14,18,28,.82));border:1px solid rgba(25,200,255,.4);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);transform:scale(.6);opacity:0;transition:transform .45s cubic-bezier(.2,1.2,.3,1),opacity .3s ease;}
+        #mModal.open .m-panel{transform:scale(1);opacity:1;}
+        .m-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(25,200,255,.5);background:rgba(16,20,28,.8);color:#19c8ff;font-size:1.1rem;cursor:pointer;transition:.25s;}
+        .m-close:hover{background:#19c8ff;color:#04121a;transform:rotate(90deg);}
+        .m-head{display:flex;align-items:center;gap:16px;margin-bottom:12px;padding-right:44px;}
+        .m-icon{font-size:2.6rem;}
+        .m-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;color:#fff;line-height:1.25;}
+        .m-desc{color:#aab6c4;line-height:1.7;margin:8px 0 22px;font-size:.98rem;}
+        .m-sub{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:2px;color:#19c8ff;margin-bottom:10px;}
+        .m-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px;}
+        .m-stat{padding:14px 16px;border-radius:14px;background:rgba(25,200,255,.07);border:1px solid rgba(25,200,255,.25);}
+        .m-stat small{display:block;color:#8392a3;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+        .m-stat b{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;color:#e9f7ff;}
+        .m-bar{height:6px;border-radius:4px;background:#232c3b;margin-top:8px;overflow:hidden;}
+        .m-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#19c8ff,#a06bff);transition:width 1s ease .3s;}
+        .m-cert{border-radius:16px;border:1px dashed rgba(25,200,255,.45);background:rgba(10,14,22,.6);min-height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .m-cert img{width:100%;display:block;}
+        .m-cert .mock{text-align:center;padding:26px 20px;color:#9fb0c1;}
+        .m-cert .mock .t{font-family:'Space Grotesk',sans-serif;color:#fff;font-size:1.05rem;margin:6px 0;}
+        .m-cert .mock .s{font-size:.78rem;line-height:1.6;}
+        body.m-lock{overflow:hidden;}
     </style>
 </head>
 <body id="top">
-    <div id="loader"><div class="ld-name">SARTHAK YADAV</div><div class="ld-bar"><i></i></div></div>
+    <div id="loader" title="Click to skip">
+        <div class="ld-gear">⚙️</div>
+        <div class="ld-name">SARTHAK YADAV</div>
+        <div class="ld-term" id="ldTerm"></div>
+        <div class="ld-bar"><i id="ldFill"></i></div>
+        <div class="ld-pct" id="ldPct">0%</div>
+        <div class="ld-skip">click to skip</div>
+    </div>
     <div id="progress"></div>
     <div class="orb o1"></div><div class="orb o2"></div>
     <canvas id="dust"></canvas>
     <div class="side-rail">
-        <a href="https://github.com/SarthakYadav-07" target="_blank" rel="noopener" title="GitHub">&lt;/&gt;</a>
+        <a href="https://github.com/SarthakYadav-07" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.15-.02-2.09-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.2.66.79.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/></svg></a>
         <a href="https://www.linkedin.com/in/sarthak-yadav-6b129b442/" target="_blank" rel="noopener" title="LinkedIn">in</a>
         <a href="mailto:sarthakyadav07911@gmail.com" title="Email">✉</a>
+    </div>
+            <div id="mModal" aria-hidden="true">
+        <div class="m-panel" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+            <button class="m-close" id="mClose" aria-label="Close">✕</button>
+            <div class="m-head"><div class="m-icon" id="mIcon"></div><h3 id="mTitle"></h3></div>
+            <p class="m-desc" id="mDesc"></p>
+            <div class="m-sub">RANK &amp; SCORE BREAKDOWN</div>
+            <div class="m-stats" id="mStats"></div>
+            <div class="m-sub">CERTIFICATE PREVIEW</div>
+            <div class="m-cert" id="mCert"></div>
+        </div>
+    </div>
+    <button id="termBtn" aria-label="Open terminal" title="Open terminal">&gt;_</button>
+    <div id="term" role="dialog" aria-label="Portfolio terminal">
+        <div class="term-bar"><div class="dots"><i></i><i></i><i></i></div><div class="ttl">sarthak@portfolio:~</div><button id="termMin" aria-label="Minimize terminal">_</button></div>
+        <div id="termOut"></div>
+        <div class="term-in"><span>sarthak@portfolio:~$</span><input id="termInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input"></div>
     </div>
     <button id="toTop" aria-label="Back to top">↑</button>
 
@@ -1049,6 +1149,7 @@
             <li><a href="#olympiads">Olympiads</a></li>
             <li><a href="#goals">Goals</a></li>
         </ul>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
     </nav>
 
     <section class="profile" id="home">
@@ -1191,7 +1292,7 @@
             <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 2rem; color: #fff;">Fundraising Outreach Program with Mitty Verse</h3>
 
             <p style="color: #a0a0b5; font-size: 1rem; line-height: 1.8;">
-                Organized and took part in an <strong>outreach program</strong> with
+                Organized and took part in a <strong>3-day outreach program</strong> with
                 <strong>Mitty Verse</strong> to raise funds for
                 <strong>Akatsuki Robotics (#37791)</strong> and our
                 <strong>FTC</strong> journey — spreading the word about robotics and
@@ -1199,14 +1300,12 @@
             </p>
 
             <p style="color: #a0a0b5; font-size: 1rem; line-height: 1.8;">
-                📍 <strong>Venue: Felix Plaza, Gurugram</strong> — a large lifestyle and retail
-                destination in New Gurugram (Sector 82A) with 150+ brands, a food court,
-                a Cinepolis multiplex, Fun City, and a 2-acre outdoor event space — a
-                busy spot to meet families and share what FTC robotics is all about.
+                📍 Held over <strong>3 days</strong> at <strong>Felix Plaza, Gurugram</strong>.
             </p>
 
             <div class="ftc-tech-stack">
                 <span class="ftc-tech-item">📍 Felix Plaza</span>
+                <span class="ftc-tech-item">📅 3-Day Outreach</span>
                 <span class="ftc-tech-item">🤝 Community Outreach</span>
                 <span class="ftc-tech-item">💰 Fundraising</span>
                 <span class="ftc-tech-item">🌌 Mitty Verse</span>
@@ -1531,14 +1630,18 @@
         slideElements.forEach(el => slideObserver.observe(el));
 
         const xrayLens = document.getElementById('xrayLens');
-        document.addEventListener('mousemove', (e) => {
-            xrayLens.style.left = e.clientX + 'px';
-            xrayLens.style.top = e.clientY + 'px';
+        function moveLens(x, y) {
+            xrayLens.style.left = x + 'px';
+            xrayLens.style.top = y + 'px';
             xrayLens.classList.add('active');
-        });
-        document.addEventListener('mouseleave', () => {
-            xrayLens.classList.remove('active');
-        });
+        }
+        function hideLens() { xrayLens.classList.remove('active'); }
+        document.addEventListener('mousemove', (e) => moveLens(e.clientX, e.clientY));
+        document.addEventListener('mouseleave', hideLens);
+        document.addEventListener('touchstart', (e) => { const t = e.touches[0]; moveLens(t.clientX, t.clientY); }, { passive: true });
+        document.addEventListener('touchmove', (e) => { const t = e.touches[0]; moveLens(t.clientX, t.clientY); }, { passive: true });
+        document.addEventListener('touchend', hideLens);
+        document.addEventListener('touchcancel', hideLens);
 
         // 🎮 ROBO ARCADE — GEAR CATCH GAME (workshop theme, no glow)
         const canvas = document.getElementById('gameCanvas');
@@ -1802,7 +1905,21 @@
 <script>
 // ✨ UPGRADE LAYER JS
 (function(){
-  window.addEventListener('load',function(){setTimeout(function(){var l=document.getElementById('loader');if(l)l.classList.add('done');},1400);});
+  (function(){
+    var l=document.getElementById('loader'),t=document.getElementById('ldTerm'),f=document.getElementById('ldFill'),p=document.getElementById('ldPct');
+    var msgs=['Booting portfolio...','Calibrating servo motors...','Loading Python + OpenCV...','Syncing Akatsuki Robotics #37791...','Charging gamer reflexes...','Ready. Welcome!'];
+    var v=0,k=0,fin=false;
+    function done(){if(fin)return;fin=true;l.classList.add('done');}
+    l.addEventListener('click',done);
+    var iv=setInterval(function(){
+      v=Math.min(100,v+Math.random()*9+3);
+      f.style.width=v+'%';p.textContent=Math.floor(v)+'%';
+      var want=Math.min(msgs.length,Math.floor(v/100*msgs.length)+1);
+      while(k<want){var d=document.createElement('div');d.textContent=msgs[k++];t.appendChild(d);}
+      if(v>=100){clearInterval(iv);setTimeout(done,500);}
+    },130);
+    setTimeout(done,4500);
+  })();
   var pb=document.getElementById('progress'),tt=document.getElementById('toTop');
   function sc(){var h=document.documentElement.scrollHeight-innerHeight;pb.style.width=(h>0?scrollY/h*100:0)+'%';tt.classList.toggle('show',scrollY>600);}
   addEventListener('scroll',sc,{passive:true});sc();
@@ -1838,6 +1955,95 @@
       void w.offsetWidth;w.classList.remove('in');
     },450);
   },2200);
+})();
+</script>
+<script>
+(function(){var b=document.getElementById('menuBtn'),n=document.querySelector('nav');if(!b)return;
+b.onclick=function(){n.classList.toggle('open');};
+n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');});});})();
+</script>
+
+<script>
+// 💻 CLI TERMINAL
+(function(){
+  var btn=document.getElementById('termBtn'),box=document.getElementById('term'),out=document.getElementById('termOut'),inp=document.getElementById('termInput'),min=document.getElementById('termMin');
+  if(!btn)return;
+  var hist=[],hi=0,booted=false;
+  function line(t,cls){var d=document.createElement('div');if(cls)d.className=cls;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight;}
+  var CMD={
+    help:function(){['Available commands:','  help       show this list','  about      who I am','  skills     my tech stack','  robotics   Mitty Verse AI robotic hand','  olympiads  my olympiad results','  ftc        Akatsuki Robotics','  contact    get in touch','  clear      clear the screen'].forEach(function(t){line(t,t.charAt(0)===' '?'':'c');});},
+    about:function(){line('SARTHAK YADAV','c');line('Student at Knowledge Tree World School, Gurugram.');line('Olympiad scholar, robotics enthusiast and software developer.');line('I build real hardware driven by Python + computer vision.');},
+    skills:function(){line('[ SKILLS ]','c');line('  Python ........ AI + computer vision scripts');line('  C++ ........... Arduino firmware');line('  Arduino ....... servos, serial communication');line('  OpenCV ........ real-time hand tracking');},
+    robotics:function(){line('[ MITTY VERSE — AI ROBOTIC HAND ]','c');line('A robotic hand that copies my real hand in real time.');line('Camera -> OpenCV/MediaPipe -> finger array -> Arduino -> servos.');line('Serial string example:  $11111','c');line('  1 = finger up, 0 = finger down (thumb to pinky)');},
+    olympiads:function(){line('[ OLYMPIADS & EVENTS ]','c');line('  SOF National Science Olympiad ... School Rank 2, Intl Rank 296');line('  Intl. Reasoning & Aptitude ...... Class Rank 1st (2024-25)');line('  Intl. Olympiad of Math .......... Class Rank 2nd (2022-23, 2023-24)');line('  Also: table tennis, French language event, chess club','m');line('  Scroll to the Olympiads section for full details.','m');},
+    ftc:function(){line('[ AKATSUKI ROBOTICS — FTC #37791 ]','c');line('FIRST Tech Challenge team. I work on hardware and volunteer.');},
+    contact:function(){line('Email   : sarthakyadav07911@gmail.com');line('GitHub  : github.com/SarthakYadav-07');line('LinkedIn: linkedin.com/in/sarthak-yadav-6b129b442');},
+    clear:function(){out.textContent='';}
+  };
+  function run(raw){
+    var c=raw.trim().toLowerCase();
+    line('sarthak@portfolio:~$ '+raw,'m');
+    if(!c)return;
+    hist.push(raw);hi=hist.length;
+    if(Object.prototype.hasOwnProperty.call(CMD,c))CMD[c]();
+    else line("command not found: "+c+". Type 'help'.",'e');
+  }
+  function open(){
+    box.classList.add('open');btn.classList.add('hide');
+    if(!booted){booted=true;line('SARTHAK.OS v1.0 — portfolio terminal','c');line("Type 'help' to see commands.",'m');}
+    setTimeout(function(){inp.focus();},300);
+  }
+  function close(){box.classList.remove('open');btn.classList.remove('hide');}
+  btn.addEventListener('click',open);min.addEventListener('click',close);
+  box.addEventListener('click',function(){inp.focus();});
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){run(inp.value);inp.value='';}
+    else if(e.key==='ArrowUp'){if(hi>0){hi--;inp.value=hist[hi]||'';}e.preventDefault();}
+    else if(e.key==='ArrowDown'){if(hi<hist.length-1){hi++;inp.value=hist[hi];}else{hi=hist.length;inp.value='';}e.preventDefault();}
+    else if(e.key==='Escape'){close();}
+  });
+})();
+</script>
+
+<script>
+// 🏅 MEDAL MODAL
+(function(){
+  var modal=document.getElementById('mModal');if(!modal)return;
+  var cards=Array.prototype.slice.call(document.querySelectorAll('#olympiads .medal-card'));
+  var icon=document.getElementById('mIcon'),title=document.getElementById('mTitle'),desc=document.getElementById('mDesc'),stats=document.getElementById('mStats'),cert=document.getElementById('mCert'),closeB=document.getElementById('mClose');
+  var last=null;
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e;}
+  function openFor(card,idx){
+    last=card;
+    var h=card.querySelector('h3').textContent.trim(),p=card.querySelector('p').textContent.trim(),ic=card.querySelector('.medal-badge').textContent.trim();
+    icon.textContent=ic;title.textContent=h;desc.textContent=p;stats.textContent='';
+    card.querySelectorAll('.stat-badge').forEach(function(b){
+      var t=b.textContent.trim(),i=t.indexOf(':'),lab,val;
+      if(i>-1){lab=t.slice(0,i);val=t.slice(i+1).trim();}else{lab='Achievement';val=t;}
+      var box=el('div','m-stat');box.appendChild(el('small','',lab));box.appendChild(el('b','',val));
+      var m=/^([\d.]+)\s*\/\s*([\d.]+)$/.exec(val);
+      if(m){var bar=el('div','m-bar'),fill=el('i');bar.appendChild(fill);box.appendChild(bar);setTimeout(function(){fill.style.width=Math.min(100,parseFloat(m[1])/parseFloat(m[2])*100)+'%';},60);}
+      stats.appendChild(box);
+    });
+    // certificate: use certificates/olympiad-N.jpg if present, else a placeholder frame
+    cert.textContent='';
+    var mock=el('div','mock');mock.appendChild(el('div','',ic));mock.appendChild(el('div','t',h));mock.appendChild(el('div','s','Certificate scan coming soon.'));
+    cert.appendChild(mock);
+    var im=new Image();im.alt='Certificate: '+h;
+    im.onload=function(){if(last===card){cert.textContent='';cert.appendChild(im);}};
+    im.src='certificates/olympiad-'+(idx+1)+'.jpg';
+    modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('m-lock');
+    setTimeout(function(){closeB.focus();},50);
+  }
+  function close(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('m-lock');if(last)last.focus({preventScroll:true});}
+  cards.forEach(function(c,i){
+    c.setAttribute('tabindex','0');c.setAttribute('role','button');
+    c.addEventListener('click',function(){openFor(c,i);});
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openFor(c,i);}});
+  });
+  closeB.addEventListener('click',close);
+  modal.addEventListener('click',function(e){if(e.target===modal)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
 })();
 </script>
 </body>
