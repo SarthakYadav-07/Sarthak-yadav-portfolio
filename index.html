@@ -1197,6 +1197,7 @@
                     <a href="#olympiads" class="pill">Olympiad Scholar</a>
                     <a href="#tech-stack" class="pill">Python & Computer Vision</a>
                     <a href="#robotics" class="pill">Arduino Hardware</a>
+                    <a href="#tech-stack" class="pill">Basic CAD Modeling</a>
                     <a href="#minigame" class="pill">Gaming</a>
                 </div>
             </div>
@@ -1205,8 +1206,8 @@
     </section>
 
     <div class="marquee"><div class="marquee-track">
-        <span class="f">ROBOTICS</span><span>OLYMPIADS</span><span class="f">FTC #37791</span><span>PYTHON</span><span class="f">AKATSUKI ROBOTICS</span><span>ARDUINO</span><span class="f">MITTY VERSE</span><span>GAMING</span>
-        <span class="f">ROBOTICS</span><span>OLYMPIADS</span><span class="f">FTC #37791</span><span>PYTHON</span><span class="f">AKATSUKI ROBOTICS</span><span>ARDUINO</span><span class="f">MITTY VERSE</span><span>GAMING</span>
+        <span class="f">ROBOTICS</span><span>OLYMPIADS</span><span class="f">FTC #37791</span><span>PYTHON</span><span class="f">AKATSUKI ROBOTICS</span><span>ARDUINO</span><span>CAD</span><span class="f">MITTY VERSE</span><span>GAMING</span>
+        <span class="f">ROBOTICS</span><span>OLYMPIADS</span><span class="f">FTC #37791</span><span>PYTHON</span><span class="f">AKATSUKI ROBOTICS</span><span>ARDUINO</span><span>CAD</span><span class="f">MITTY VERSE</span><span>GAMING</span>
     </div></div>
 
     <!-- 🛠️ WHAT I DO SECTION -->
@@ -1344,7 +1345,7 @@
         <div class="tech-grid">
             <div class="tech-card slide-left"><h3>💻 Core Programming</h3><div class="badges"><span>Python</span><span>C++</span><span>HTML / CSS</span><span>JavaScript</span></div></div>
             <div class="tech-card slide-up"><h3>🧠 AI &amp; Vision</h3><div class="badges"><span>OpenCV</span><span>MediaPipe</span><span>CVZone</span><span>Computer Vision</span><span>Hand Tracking</span></div></div>
-            <div class="tech-card slide-right"><h3>⚙️ Hardware &amp; Robotics</h3><div class="badges"><span>Arduino</span><span>Servo Motors</span><span>Serial Comms</span><span>FTC Hardware</span><span>Robotic Assembly</span></div></div>
+            <div class="tech-card slide-right"><h3>⚙️ Hardware &amp; Robotics</h3><div class="badges"><span>Arduino</span><span>Servo Motors</span><span>Serial Comms</span><span>FTC Hardware</span><span>Robotic Assembly</span><span>CAD Modeling (Basic)</span></div></div>
         </div>
     </section>
 
@@ -1556,19 +1557,19 @@
     </section>
 
     <section class="section slide-up" id="minigame" style="text-align: center;">
-        <h2 class="section-title">ROBO ARCADE 🔧</h2>
-        <p style="color: #a0a0b5; margin-bottom: 20px;">Move your mouse (or drag on mobile) to catch the falling gears ⚙️ — dodge the steel nuts 🔩! 3 lives.</p>
+        <h2 class="section-title">ROBO RUNNER 🤖</h2>
+        <p style="color: #a0a0b5; margin-bottom: 20px;">Tap, click or press <b>Space</b> to jump (double jump works!). Collect gears ⚙️, dodge crates, spikes and drones. It gets faster!</p>
 
-        <div style="position: relative; max-width: 700px; margin: 0 auto; border: 3px solid #5d6975; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px rgba(0,0,0,0.45);">
-            <canvas id="gameCanvas" width="700" height="350" style="background: #121826; display: block; width: 100%; cursor: none; touch-action: none;"></canvas>
-            <div style="position: absolute; top: 12px; left: 20px; font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: #19c8ff;">
+        <div id="runWrap" style="position: relative; max-width: 700px; margin: 0 auto; border: 2px solid rgba(25,200,255,.45); border-radius: 14px; overflow: hidden; box-shadow: 0 8px 22px rgba(0,0,0,0.45); user-select: none; -webkit-user-select: none;">
+            <canvas id="gameCanvas" width="700" height="350" style="background: #0f1522; display: block; width: 100%; touch-action: manipulation;"></canvas>
+            <div style="position: absolute; top: 12px; left: 18px; font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: #19c8ff; pointer-events: none;">
                 SCORE: <span id="gameScore" style="font-weight: 800; color: #eef2f5;">0</span>
                 &nbsp;|&nbsp; BEST: <span id="gameBest" style="font-weight: 800; color: #eef2f5;">0</span>
             </div>
-            <div id="gameLives" style="position: absolute; top: 12px; right: 20px; font-size: 1.1rem;">❤️❤️❤️</div>
-            <div id="gameOverlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(20,28,37,0.82); font-family: 'Space Grotesk', sans-serif; cursor: pointer;">
-                <div id="gameOverlayTitle" style="font-size: 2rem; font-weight: 800; color: #eef2f5;">CLICK TO START</div>
-                <div id="gameOverlaySub" style="color: #19c8ff; margin-top: 8px;">Catch gears, dodge nuts</div>
+            <div id="gameLives" style="position: absolute; top: 12px; right: 18px; font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; color: #a06bff; font-weight: 700; pointer-events: none;">LVL 1</div>
+            <div id="gameOverlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(11,13,18,0.78); font-family: 'Space Grotesk', sans-serif; cursor: pointer;">
+                <div id="gameOverlayTitle" style="font-size: 2rem; font-weight: 800; color: #eef2f5;">TAP TO START</div>
+                <div id="gameOverlaySub" style="color: #19c8ff; margin-top: 8px;">Jump, collect gears, survive</div>
             </div>
         </div>
     </section>
@@ -1666,262 +1667,238 @@
         document.addEventListener('touchend', hideLens);
         document.addEventListener('touchcancel', hideLens);
 
-        // 🎮 ROBO ARCADE — GEAR CATCH GAME (workshop theme, no glow)
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const scoreEl = document.getElementById('gameScore');
-        const bestEl = document.getElementById('gameBest');
-        const livesEl = document.getElementById('gameLives');
-        const overlay = document.getElementById('gameOverlay');
-        const overlayTitle = document.getElementById('gameOverlayTitle');
-        const overlaySub = document.getElementById('gameOverlaySub');
+        // 🎮 ROBO RUNNER — endless runner
+        (function () {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height, GROUND = 290;
+            const scoreEl = document.getElementById('gameScore');
+            const bestEl = document.getElementById('gameBest');
+            const lvlEl = document.getElementById('gameLives');
+            const overlay = document.getElementById('gameOverlay');
+            const ovTitle = document.getElementById('gameOverlayTitle');
+            const ovSub = document.getElementById('gameOverlaySub');
+            const wrap = document.getElementById('runWrap');
 
-        const C = {
-            bg: '#121826',
-            grid: '#232c3b',
-            amber: '#19c8ff',
-            amberDark: '#0f6a8a',
-            steel: '#9aa5b1',
-            steelDark: '#5d6975',
-            light: '#c8d0d8'
-        };
+            let best = 0;
+            try { best = parseInt(localStorage.getItem('roboRunBest') || '0', 10) || 0; } catch (e) {}
+            bestEl.textContent = best;
 
-        let best = 0;
-        try { best = parseInt(localStorage.getItem('roboArcadeBest') || '0', 10) || 0; } catch (e) {}
-        bestEl.innerText = best;
+            let running = false, dead = false, visible = true;
+            let speed, dist, gears, frame, nextSpawn, obstacles, pickups, parts, shake, player;
 
-        const player = { x: canvas.width / 2, w: 90, h: 16 };
-        let items = [];
-        let sparks = [];
-        let score = 0;
-        let lives = 3;
-        let running = false;
-        let spawnTimer = 0;
-        let difficulty = 1;
+            const stars = Array.from({ length: 40 }, () => ({ x: Math.random() * W, y: Math.random() * 170, r: Math.random() * 1.4 + 0.3 }));
+            const far = Array.from({ length: 10 }, (_, i) => ({ x: i * 90, w: 60 + Math.random() * 40, h: 60 + Math.random() * 90 }));
+            const near = Array.from({ length: 7 }, (_, i) => ({ x: i * 130, w: 80 + Math.random() * 40, h: 40 + Math.random() * 70, seed: Math.random() }));
 
-        function setPlayerX(clientX) {
-            const rect = canvas.getBoundingClientRect();
-            const x = (clientX - rect.left) * (canvas.width / rect.width);
-            player.x = Math.max(player.w / 2, Math.min(canvas.width - player.w / 2, x));
-        }
-
-        canvas.addEventListener('mousemove', (e) => setPlayerX(e.clientX));
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            setPlayerX(e.touches[0].clientX);
-        }, { passive: false });
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            setPlayerX(e.touches[0].clientX);
-        }, { passive: false });
-
-        function updateLives() {
-            livesEl.innerText = '❤️'.repeat(Math.max(lives, 0)) + '🖤'.repeat(3 - Math.max(lives, 0));
-        }
-
-        function startGame() {
-            items = [];
-            sparks = [];
-            score = 0;
-            lives = 3;
-            difficulty = 1;
-            spawnTimer = 0;
-            scoreEl.innerText = 0;
-            updateLives();
-            overlay.style.display = 'none';
-            running = true;
-        }
-
-        function endGame() {
-            running = false;
-            if (score > best) {
-                best = score;
-                bestEl.innerText = best;
-                try { localStorage.setItem('roboArcadeBest', String(best)); } catch (e) {}
+            function reset() {
+                speed = 5; dist = 0; gears = 0; frame = 0; nextSpawn = 400;
+                obstacles = []; pickups = []; parts = []; shake = 0;
+                player = { x: 90, y: GROUND - 44, vy: 0, w: 32, h: 44, jumps: 0 };
+                scoreEl.textContent = 0; lvlEl.textContent = 'LVL 1';
             }
-            overlayTitle.innerText = 'GAME OVER — ' + score;
-            overlaySub.innerText = 'Click to play again';
-            overlay.style.display = 'flex';
-        }
+            reset();
 
-        overlay.addEventListener('click', startGame);
-        overlay.addEventListener('touchstart', (e) => { e.preventDefault(); startGame(); }, { passive: false });
+            function score() { return Math.floor(dist / 12) + gears * 10; }
+            function level() { return 1 + Math.floor(score() / 150); }
 
-        function spawnItem() {
-            const isNut = Math.random() < 0.28;
-            items.push({
-                x: Math.random() * (canvas.width - 40) + 20,
-                y: -20,
-                r: isNut ? 14 : 15,
-                speed: (Math.random() * 1.5 + 2) * difficulty,
-                nut: isNut,
-                spin: Math.random() * Math.PI
+            function jump() {
+                if (!running) { return; }
+                if (player.jumps < 2) {
+                    player.vy = player.jumps === 0 ? -12.8 : -11.2;
+                    player.jumps++;
+                    for (let i = 0; i < 6; i++) parts.push({ x: player.x + player.w / 2, y: player.y + player.h, vx: (Math.random() - 0.5) * 3, vy: Math.random() * 1.5, a: 1, c: '#7fdcff' });
+                }
+            }
+
+            function start() {
+                reset(); running = true; dead = false;
+                overlay.style.display = 'none';
+            }
+
+            function gameOver() {
+                running = false; dead = true; shake = 14;
+                const sc = score();
+                if (sc > best) { best = sc; bestEl.textContent = best; try { localStorage.setItem('roboRunBest', String(best)); } catch (e) {} }
+                ovTitle.textContent = 'CRASHED — ' + sc;
+                ovSub.textContent = (sc >= best && sc > 0 ? 'New best! ' : '') + 'Tap to run again';
+                setTimeout(() => { overlay.style.display = 'flex'; }, 450);
+            }
+
+            function press(e) {
+                if (e && e.cancelable) e.preventDefault();
+                if (!running) { if (overlay.style.display !== 'none') start(); return; }
+                jump();
+            }
+            wrap.addEventListener('pointerdown', press);
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' || e.code === 'ArrowUp') {
+                    if (running) { e.preventDefault(); jump(); }
+                    else if (visible && !dead && overlay.style.display !== 'none') { e.preventDefault(); start(); }
+                    else if (visible && dead && overlay.style.display !== 'none') { e.preventDefault(); start(); }
+                }
             });
-        }
-
-        function burst(x, y, color) {
-            for (let i = 0; i < 10; i++) {
-                sparks.push({
-                    x, y, color,
-                    vx: (Math.random() - 0.5) * 6,
-                    vy: (Math.random() - 0.5) * 6,
-                    a: 1
-                });
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver((en) => { visible = en[0].isIntersecting; }, { threshold: 0.2 }).observe(wrap);
             }
-        }
 
-        function drawGrid() {
-            ctx.save();
-            ctx.strokeStyle = C.grid;
-            ctx.lineWidth = 1;
-            for (let x = 0; x <= canvas.width; x += 35) {
+            function spawn() {
+                const r = Math.random();
+                if (r < 0.4) {
+                    const h = 34 + Math.floor(Math.random() * 22), w = 36 + Math.floor(Math.random() * 14);
+                    obstacles.push({ t: 'crate', x: W + 20, y: GROUND - h, w, h });
+                } else if (r < 0.75) {
+                    const n = Math.random() < 0.4 ? 2 : 1;
+                    obstacles.push({ t: 'spike', x: W + 20, y: GROUND - 28, w: 34 * n, h: 28, n });
+                } else {
+                    const hy = GROUND - 95 - Math.random() * 25;
+                    obstacles.push({ t: 'drone', x: W + 20, y: hy, w: 46, h: 26, base: hy, ph: Math.random() * 6 });
+                }
+                if (Math.random() < 0.7) {
+                    const gx = W + 20 + 190, arc = Math.random() < 0.5;
+                    for (let i = 0; i < 3; i++) pickups.push({ x: gx + i * 38, y: GROUND - (arc ? 70 + Math.sin(i / 2 * Math.PI) * 55 : 60), r: 11, rot: 0 });
+                }
+                nextSpawn = (300 + Math.random() * 260) * (0.75 + speed / 14);
+            }
+
+            function hit(a, b, pad) {
+                return a.x + pad < b.x + b.w - pad && a.x + a.w - pad > b.x + pad && a.y + pad < b.y + b.h - pad && a.y + a.h - pad > b.y + pad;
+            }
+
+            function drawGear(x, y, r, rot) {
+                ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
+                ctx.fillStyle = '#19c8ff'; ctx.strokeStyle = '#0a6f94'; ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, canvas.height);
-                ctx.stroke();
-            }
-            for (let y = 0; y <= canvas.height; y += 35) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(canvas.width, y);
-                ctx.stroke();
-            }
-            ctx.restore();
-        }
-
-        function drawGear(x, y, r, rot) {
-            ctx.save();
-            ctx.translate(x, y);
-            ctx.rotate(rot);
-            ctx.fillStyle = C.amber;
-            ctx.strokeStyle = C.amberDark;
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            for (let i = 0; i < 8; i++) {
-                const ang = (i / 8) * Math.PI * 2;
-                const a2 = ang + Math.PI / 8;
-                ctx.lineTo(Math.cos(ang) * r, Math.sin(ang) * r);
-                ctx.lineTo(Math.cos(a2) * r * 0.72, Math.sin(a2) * r * 0.72);
-            }
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-            ctx.fillStyle = C.bg;
-            ctx.beginPath();
-            ctx.arc(0, 0, r * 0.3, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.restore();
-        }
-
-        // hex nut — plain steel, no cross, no glow
-        function drawNut(x, y, r, rot) {
-            ctx.save();
-            ctx.translate(x, y);
-            ctx.rotate(rot);
-            ctx.fillStyle = C.steel;
-            ctx.strokeStyle = C.steelDark;
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            for (let i = 0; i < 6; i++) {
-                const ang = (i / 6) * Math.PI * 2;
-                ctx.lineTo(Math.cos(ang) * r, Math.sin(ang) * r);
-            }
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-            ctx.fillStyle = C.bg;
-            ctx.strokeStyle = C.steelDark;
-            ctx.beginPath();
-            ctx.arc(0, 0, r * 0.42, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-            ctx.restore();
-        }
-
-        function drawPlayer() {
-            const y = canvas.height - 34;
-            ctx.save();
-            ctx.fillStyle = C.light;
-            ctx.fillRect(player.x - player.w / 2, y, player.w, player.h);
-            ctx.fillStyle = C.steelDark;
-            ctx.fillRect(player.x - player.w / 2 + 8, y + 4, player.w - 16, player.h - 8);
-            ctx.fillStyle = C.amber;
-            ctx.fillRect(player.x - 3, y - 10, 6, 10);
-            ctx.restore();
-        }
-
-        function gameLoop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawGrid();
-
-            if (running) {
-                spawnTimer++;
-                const interval = Math.max(18, 45 - score * 0.6);
-                if (spawnTimer >= interval) {
-                    spawnTimer = 0;
-                    spawnItem();
+                for (let i = 0; i < 16; i++) {
+                    const ang = (i / 16) * Math.PI * 2, rad = i % 2 === 0 ? r : r * 0.74;
+                    ctx.lineTo(Math.cos(ang) * rad, Math.sin(ang) * rad);
                 }
-                difficulty = Math.min(1 + score * 0.02, 2.4);
-            }
-
-            const catchY = canvas.height - 34;
-
-            for (let i = items.length - 1; i >= 0; i--) {
-                const it = items[i];
-                if (running) {
-                    it.y += it.speed;
-                    it.spin += it.nut ? 0.03 : 0.08;
-                }
-
-                const caught = running &&
-                    it.y + it.r >= catchY &&
-                    it.y - it.r <= catchY + player.h &&
-                    Math.abs(it.x - player.x) <= player.w / 2 + it.r * 0.5;
-
-                if (caught) {
-                    if (it.nut) {
-                        lives--;
-                        updateLives();
-                        burst(it.x, it.y, C.steel);
-                        if (lives <= 0) endGame();
-                    } else {
-                        score++;
-                        scoreEl.innerText = score;
-                        burst(it.x, it.y, C.amber);
-                    }
-                    items.splice(i, 1);
-                    continue;
-                }
-
-                if (it.y > canvas.height + 30) {
-                    items.splice(i, 1);
-                    continue;
-                }
-
-                if (it.nut) drawNut(it.x, it.y, it.r, it.spin);
-                else drawGear(it.x, it.y, it.r, it.spin);
-            }
-
-            for (let i = sparks.length - 1; i >= 0; i--) {
-                const sp = sparks[i];
-                sp.x += sp.vx;
-                sp.y += sp.vy;
-                sp.a -= 0.04;
-                if (sp.a <= 0) { sparks.splice(i, 1); continue; }
-                ctx.save();
-                ctx.globalAlpha = sp.a;
-                ctx.fillStyle = sp.color;
-                ctx.beginPath();
-                ctx.arc(sp.x, sp.y, 3, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.closePath(); ctx.fill(); ctx.stroke();
+                ctx.fillStyle = '#0f1522'; ctx.beginPath(); ctx.arc(0, 0, r * 0.34, 0, Math.PI * 2); ctx.fill();
                 ctx.restore();
             }
 
-            drawPlayer();
-            requestAnimationFrame(gameLoop);
-        }
+            function drawPlayer() {
+                const p = player, onGround = p.y >= GROUND - p.h - 0.5;
+                const run = Math.floor(frame / 6) % 2;
+                ctx.save(); ctx.translate(p.x, p.y);
+                // legs
+                ctx.fillStyle = '#6b7a8c';
+                if (onGround) {
+                    ctx.fillRect(7, p.h - 12, 7, 12 - (run ? 3 : 0));
+                    ctx.fillRect(18, p.h - 12, 7, 12 - (run ? 0 : 3));
+                } else { ctx.fillRect(7, p.h - 14, 7, 10); ctx.fillRect(18, p.h - 14, 7, 10); }
+                // body
+                ctx.fillStyle = '#c8d3df'; ctx.beginPath(); ctx.roundRect(3, 14, 26, 20, 5); ctx.fill();
+                ctx.fillStyle = '#19c8ff'; ctx.fillRect(12, 20, 8, 6);
+                // head
+                ctx.fillStyle = '#e4ebf2'; ctx.beginPath(); ctx.roundRect(4, 0, 24, 16, 5); ctx.fill();
+                ctx.fillStyle = '#0f1522'; ctx.fillRect(14, 4, 12, 7);
+                ctx.fillStyle = '#19c8ff'; ctx.fillRect(18, 6, 6, 3);
+                // antenna
+                ctx.strokeStyle = '#8392a3'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(10, 0); ctx.lineTo(8, -7); ctx.stroke();
+                ctx.fillStyle = '#a06bff'; ctx.beginPath(); ctx.arc(8, -8, 3, 0, Math.PI * 2); ctx.fill();
+                ctx.restore();
+            }
 
-        gameLoop();
+            function drawObstacle(o) {
+                if (o.t === 'crate') {
+                    ctx.fillStyle = '#7d8a99'; ctx.fillRect(o.x, o.y, o.w, o.h);
+                    ctx.strokeStyle = '#4b5663'; ctx.lineWidth = 3; ctx.strokeRect(o.x + 1.5, o.y + 1.5, o.w - 3, o.h - 3);
+                    ctx.beginPath(); ctx.moveTo(o.x + 4, o.y + 4); ctx.lineTo(o.x + o.w - 4, o.y + o.h - 4); ctx.moveTo(o.x + o.w - 4, o.y + 4); ctx.lineTo(o.x + 4, o.y + o.h - 4); ctx.stroke();
+                } else if (o.t === 'spike') {
+                    ctx.fillStyle = '#ff5f7a';
+                    for (let i = 0; i < o.n; i++) {
+                        const bx = o.x + i * 34;
+                        ctx.beginPath(); ctx.moveTo(bx, GROUND); ctx.lineTo(bx + 17, o.y); ctx.lineTo(bx + 34, GROUND); ctx.closePath(); ctx.fill();
+                    }
+                } else {
+                    ctx.fillStyle = '#a06bff'; ctx.beginPath(); ctx.roundRect(o.x, o.y + 6, o.w, 16, 8); ctx.fill();
+                    ctx.fillStyle = '#ff5f7a'; ctx.beginPath(); ctx.arc(o.x + o.w / 2, o.y + 14, 4, 0, Math.PI * 2); ctx.fill();
+                    ctx.strokeStyle = '#c9b6ff'; ctx.lineWidth = 2;
+                    const f = Math.floor(frame / 3) % 2 ? 4 : -4;
+                    ctx.beginPath(); ctx.moveTo(o.x + 6, o.y + 6); ctx.lineTo(o.x + 6, o.y + 2 + f); ctx.moveTo(o.x + o.w - 6, o.y + 6); ctx.lineTo(o.x + o.w - 6, o.y + 2 + f); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(o.x + 0, o.y + 2 + f); ctx.lineTo(o.x + 12, o.y + 2 + f); ctx.moveTo(o.x + o.w - 12, o.y + 2 + f); ctx.lineTo(o.x + o.w, o.y + 2 + f); ctx.stroke();
+                }
+            }
+
+            function drawBackground() {
+                const g = ctx.createLinearGradient(0, 0, 0, H);
+                g.addColorStop(0, '#0b0f1a'); g.addColorStop(1, '#17203a');
+                ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+                ctx.fillStyle = '#9fb4cc';
+                stars.forEach((st) => { ctx.globalAlpha = 0.5; ctx.fillRect(st.x, st.y, st.r, st.r); });
+                ctx.globalAlpha = 1;
+                const off1 = (dist * 0.15) % 900, off2 = (dist * 0.4) % 910;
+                ctx.fillStyle = '#141b2e';
+                far.forEach((b) => { let x = b.x - off1; if (x < -b.w) x += 900; ctx.fillRect(x, GROUND - b.h - 20, b.w, b.h + 20); });
+                ctx.fillStyle = '#1a2440';
+                near.forEach((b) => {
+                    let x = b.x - off2; if (x < -b.w) x += 910;
+                    ctx.fillRect(x, GROUND - b.h, b.w, b.h);
+                    ctx.fillStyle = 'rgba(25,200,255,.35)';
+                    for (let wy = GROUND - b.h + 8; wy < GROUND - 8; wy += 16)
+                        for (let wx = x + 8; wx < x + b.w - 8; wx += 16)
+                            if (((wx * 7 + wy * 3 + Math.floor(b.seed * 100)) % 5) < 2) ctx.fillRect(wx, wy, 5, 6);
+                    ctx.fillStyle = '#1a2440';
+                });
+                ctx.fillStyle = '#10161f'; ctx.fillRect(0, GROUND, W, H - GROUND);
+                ctx.fillStyle = '#19c8ff'; ctx.fillRect(0, GROUND, W, 2);
+                ctx.fillStyle = '#2a3750';
+                const dOff = (dist * 1) % 60;
+                for (let x = -dOff; x < W; x += 60) ctx.fillRect(x, GROUND + 22, 30, 3);
+            }
+
+            function loop() {
+                requestAnimationFrame(loop);
+                if (!visible) return;
+                frame++;
+                if (running) {
+                    speed = Math.min(11, 5 + dist / 4000);
+                    dist += speed;
+                    player.vy += 0.7; player.y += player.vy;
+                    if (player.y >= GROUND - player.h) {
+                        if (player.jumps > 0 || player.vy > 3) for (let i = 0; i < 5; i++) parts.push({ x: player.x + 16, y: GROUND, vx: (Math.random() - 0.5) * 3, vy: -Math.random() * 1.5, a: 1, c: '#7fdcff' });
+                        player.y = GROUND - player.h; player.vy = 0; player.jumps = 0;
+                    }
+                    nextSpawn -= speed;
+                    if (nextSpawn <= 0) spawn();
+                    obstacles.forEach((o) => { o.x -= speed; if (o.t === 'drone') o.y = o.base + Math.sin(frame / 14 + o.ph) * 14; });
+                    obstacles = obstacles.filter((o) => o.x + o.w > -20);
+                    pickups.forEach((p) => { p.x -= speed; p.rot += 0.08; });
+                    pickups = pickups.filter((p) => p.x > -30);
+                    for (const o of obstacles) {
+                        const box = o.t === 'spike' ? { x: o.x + 4, y: o.y + 6, w: o.w - 8, h: o.h - 6 } : o;
+                        if (hit(player, box, 6)) { gameOver(); break; }
+                    }
+                    for (let i = pickups.length - 1; i >= 0; i--) {
+                        const p = pickups[i];
+                        if (hit(player, { x: p.x - p.r, y: p.y - p.r, w: p.r * 2, h: p.r * 2 }, 0)) {
+                            pickups.splice(i, 1); gears++;
+                            for (let k = 0; k < 8; k++) parts.push({ x: p.x, y: p.y, vx: (Math.random() - 0.5) * 5, vy: (Math.random() - 0.5) * 5, a: 1, c: '#19c8ff' });
+                        }
+                    }
+                    scoreEl.textContent = score();
+                    lvlEl.textContent = 'LVL ' + level();
+                } else if (!dead) {
+                    dist += 2; // idle scroll on the title screen
+                }
+                ctx.save();
+                if (shake > 0) { ctx.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake); shake *= 0.85; if (shake < 0.5) shake = 0; }
+                drawBackground();
+                pickups.forEach((p) => drawGear(p.x, p.y, p.r, p.rot));
+                obstacles.forEach(drawObstacle);
+                if (!dead || shake > 0) drawPlayer();
+                for (let i = parts.length - 1; i >= 0; i--) {
+                    const q = parts[i]; q.x += q.vx; q.y += q.vy; q.a -= 0.05;
+                    if (q.a <= 0) { parts.splice(i, 1); continue; }
+                    ctx.globalAlpha = q.a; ctx.fillStyle = q.c; ctx.fillRect(q.x, q.y, 3, 3);
+                }
+                ctx.globalAlpha = 1;
+                ctx.restore();
+            }
+            loop();
+        })();
     </script>
 
 
@@ -1991,29 +1968,92 @@ n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click
 (function(){
   var btn=document.getElementById('termBtn'),box=document.getElementById('term'),out=document.getElementById('termOut'),inp=document.getElementById('termInput'),min=document.getElementById('termMin');
   if(!btn)return;
-  var hist=[],hi=0,booted=false;
+  var hist=[],hi=0,booted=false,start=Date.now();
   function line(t,cls){var d=document.createElement('div');if(cls)d.className=cls;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight;}
+  function lines(arr,cls){arr.forEach(function(t){line(t,cls);});}
+  var SECTIONS={home:'home',about:'about',skills:'skills',robotics:'robotics',tech:'tech-stack',ftc:'ftc',education:'education',olympiads:'olympiads',goals:'goals',game:'minigame',contact:'footer'};
+  var LINKS={github:'https://github.com/SarthakYadav-07',linkedin:'https://www.linkedin.com/in/sarthak-yadav-6b129b442/',email:'mailto:sarthakyadav07911@gmail.com'};
+  function goTo(name){
+    var id=SECTIONS[name];if(!id)return false;
+    var el=id==='footer'?document.querySelector('footer'):document.getElementById(id);
+    if(!el)return false;
+    box.classList.remove('open');btn.classList.remove('hide');
+    el.scrollIntoView({behavior:'smooth',block:'start'});return true;
+  }
+  var JOKES=['Why do robots never panic? They have nerves of steel.','I would tell you a UDP joke, but you might not get it.','There are 10 types of people: those who understand binary and those who do not.','A servo walks into a bar. The bartender says: why the long arm?','Why was the Arduino cold? It left its Windows open.'];
+  var FACTS=['The serial string $11111 means all five fingers are up.','FTC stands for FIRST Tech Challenge.','My robotic hand copies my real hand using a camera and OpenCV.','Akatsuki Robotics is FTC Team #37791.'];
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
   var CMD={
-    help:function(){['Available commands:','  help       show this list','  about      who I am','  skills     my tech stack','  robotics   Mitty Verse AI robotic hand','  olympiads  my olympiad results','  ftc        Akatsuki Robotics','  contact    get in touch','  clear      clear the screen'].forEach(function(t){line(t,t.charAt(0)===' '?'':'c');});},
-    about:function(){line('SARTHAK YADAV','c');line('Student at Knowledge Tree World School, Gurugram.');line('Olympiad scholar, robotics enthusiast and software developer.');line('I build real hardware driven by Python + computer vision.');},
-    skills:function(){line('[ SKILLS ]','c');line('  Python ........ AI + computer vision scripts');line('  C++ ........... Arduino firmware');line('  Arduino ....... servos, serial communication');line('  OpenCV ........ real-time hand tracking');},
-    robotics:function(){line('[ MITTY VERSE — AI ROBOTIC HAND ]','c');line('A robotic hand that copies my real hand in real time.');line('Camera -> OpenCV/MediaPipe -> finger array -> Arduino -> servos.');line('Serial string example:  $11111','c');line('  1 = finger up, 0 = finger down (thumb to pinky)');},
-    olympiads:function(){line('[ OLYMPIADS & EVENTS ]','c');line('  SOF National Science Olympiad ... School Rank 2, Intl Rank 296');line('  Intl. Reasoning & Aptitude ...... Class Rank 1st (2024-25)');line('  Intl. Olympiad of Math .......... Class Rank 2nd (2022-23, 2023-24)');line('  Also: table tennis, French language event, chess club','m');line('  Scroll to the Olympiads section for full details.','m');},
-    ftc:function(){line('[ AKATSUKI ROBOTICS — FTC #37791 ]','c');line('FIRST Tech Challenge team. I work on hardware and volunteer.');},
-    contact:function(){line('Email   : sarthakyadav07911@gmail.com');line('GitHub  : github.com/SarthakYadav-07');line('LinkedIn: linkedin.com/in/sarthak-yadav-6b129b442');},
-    clear:function(){out.textContent='';}
+    help:function(){
+      line('Available commands','c');
+      lines(['  ABOUT ME','    about  whoami  education  goals  contact','  WORK','    skills  robotics  ftc  olympiads  projects','  NAVIGATE','    ls  goto <section>  open <github|linkedin|email>  play','  FUN','    neofetch  joke  fact  banner  matrix  date  uptime  echo <text>','  TERMINAL','    history  clear  exit','  Tip: press Tab to auto-complete, Up/Down for history.'],'');
+    },
+    about:function(){lines(['SARTHAK YADAV'],'c');lines(['Student at Knowledge Tree World School, Gurugram.','Olympiad scholar, robotics enthusiast and software developer.','I build real hardware driven by Python + computer vision.']);},
+    whoami:function(){line('guest@visitor  (you)','c');line('Welcome! You are exploring the portfolio of Sarthak Yadav.');},
+    skills:function(){line('[ SKILLS ]','c');lines(['  Python ........ AI + computer vision scripts','  C++ ........... Arduino firmware','  Arduino ....... servos, serial communication','  OpenCV ........ real-time hand tracking','  CAD ........... basic 3D modeling for robot parts']);},
+    robotics:function(){line('[ MITTY VERSE — AI ROBOTIC HAND ]','c');lines(['A robotic hand that copies my real hand in real time.','Camera -> OpenCV/MediaPipe -> finger array -> Arduino -> servos.']);line('Serial string example:  $11111','c');line('  1 = finger up, 0 = finger down (thumb to pinky)');},
+    projects:function(){line('[ PROJECTS ]','c');lines(['  1. AI Robotic Hand (Python + Arduino)  -> type: robotics','  2. FTC Robot Hardware (Akatsuki #37791) -> type: ftc','  3. Fundraising Outreach with Mitty Verse (3 days, Felix Plaza)','  4. This portfolio + Robo Runner game  -> type: play']);},
+    olympiads:function(){line('[ OLYMPIADS & EVENTS ]','c');lines(['  SOF National Science Olympiad ... School Rank 2, Intl Rank 296','  Intl. Reasoning & Aptitude ...... Class Rank 1st (2024-25)','  Intl. Olympiad of Math .......... Class Rank 2nd (2022-23, 2023-24)']);line('  Also: table tennis, French language event, chess club','m');line("  Type 'goto olympiads' to see them all.",'m');},
+    ftc:function(){line('[ AKATSUKI ROBOTICS — FTC #37791 ]','c');lines(['FIRST Tech Challenge team. I work on hardware and volunteer.','We also ran a 3-day fundraising outreach at Felix Plaza with Mitty Verse.']);},
+    education:function(){line('[ EDUCATION ]','c');lines(['  Knowledge Tree World School, Gurugram','  2nd to 6th Grade  (2022 - Present)  CBSE','  Before: BYJU\'S, Oda Class, Vedantu (early grades)']);},
+    goals:function(){line('[ GOALS ]','c');lines(['  [ ] Study Robotics & AI at a top global university','  [ ] Keep building real robots with computer vision','  [ ] Grow with Akatsuki Robotics and keep winning olympiads']);},
+    contact:function(){lines(['Email   : sarthakyadav07911@gmail.com','GitHub  : github.com/SarthakYadav-07','LinkedIn: linkedin.com/in/sarthak-yadav-6b129b442']);line("  Tip: 'open github' opens it for you.",'m');},
+    ls:function(){line('Sections you can visit with: goto <name>','c');line('  '+Object.keys(SECTIONS).join('   '));},
+    neofetch:function(){
+      lines(['       .--.        sarthak@portfolio','      |o_o |       -----------------','      |:_/ |       Name:    Sarthak Yadav','     //   \\ \\      School:  Knowledge Tree World School','    (|     | )     Team:    Akatsuki Robotics #37791','   /\'\\_   _/`\\     Stack:   Python, C++, Arduino, OpenCV, CAD','   \\___)=(___/     Focus:   Robotics + AI','                    Shell:   portfolio-cli 2.0'],'c');
+    },
+    banner:function(){lines(['  ____    _    ____ _____ _   _    _    _  __','/ ___|  / \\  |  _ \\_   _| | | |  / \\  | |/ /','\\___ \\ / _ \\ | |_) || | | |_| | / _ \\ | \' / ','  ___) / ___ \\|  _ < | | |  _  |/ ___ \\| . \\ ','|____/_/   \\_\\_| \\_\\|_| |_| |_/_/   \\_\\_|\\_\\'],'c');},
+    joke:function(){line(pick(JOKES));},
+    fact:function(){line('Fun fact: '+pick(FACTS));},
+    date:function(){line(new Date().toString());},
+    uptime:function(){var s=Math.floor((Date.now()-start)/1000);line('You have been here for '+Math.floor(s/60)+'m '+(s%60)+'s. Thanks for staying!');},
+    history:function(){if(!hist.length)line('(empty)','m');hist.forEach(function(h,i){line('  '+(i+1)+'  '+h);});},
+    clear:function(){out.textContent='';},
+    exit:function(){close();},
+    play:function(){line('Launching Robo Runner...','c');setTimeout(function(){goTo('game');},350);},
+    matrix:function(){
+      var chars='01アイウエオカキクケコ$#<>{}',n=0,iv=setInterval(function(){
+        var t='';for(var i=0;i<46;i++)t+=Math.random()<.35?chars.charAt(Math.floor(Math.random()*chars.length)):' ';
+        line(t,'c');if(++n>=14){clearInterval(iv);line('wake up, Sarthak...','m');}
+      },90);
+    }
   };
+  function withArgs(c,rest){
+    if(c==='goto'||c==='cd'){
+      if(!rest){line('usage: goto <section>   (type ls to see sections)','e');return true;}
+      if(goTo(rest)){line('-> jumping to '+rest+'...','m');}else line('no such section: '+rest+'. Type ls.','e');return true;}
+    if(c==='open'){
+      if(LINKS[rest]){line('opening '+rest+'...','m');if(rest==='email')location.href=LINKS[rest];else window.open(LINKS[rest],'_blank','noopener');}
+      else line('usage: open <github|linkedin|email>','e');return true;}
+    if(c==='echo'){line(rest);return true;}
+    if(c==='sudo'){line('sarthak is not in the sudoers file. This incident will be reported. (just kidding)','e');return true;}
+    if(c==='rm'){line('nice try. Nothing was deleted.','e');return true;}
+    if(c==='cat'&&CMD[rest]){CMD[rest]();return true;}
+    return false;
+  }
+  function suggest(c){
+    var all=Object.keys(CMD).concat(['goto','open','echo']),best=null;
+    all.forEach(function(k){if(!best&&(k.indexOf(c)===0||c.indexOf(k)===0))best=k;});
+    return best;
+  }
   function run(raw){
-    var c=raw.trim().toLowerCase();
+    var t=raw.trim(),parts=t.split(/\s+/),c=(parts[0]||'').toLowerCase(),rest=t.slice(parts[0].length).trim();
     line('sarthak@portfolio:~$ '+raw,'m');
-    if(!c)return;
+    if(!t)return;
     hist.push(raw);hi=hist.length;
+    if(withArgs(c,rest.toLowerCase()===rest||c!=='echo'?rest.toLowerCase():rest))return;
     if(Object.prototype.hasOwnProperty.call(CMD,c))CMD[c]();
-    else line("command not found: "+c+". Type 'help'.",'e');
+    else{var s=suggest(c);line('command not found: '+c+(s?'. Did you mean "'+s+'"?':". Type 'help'."),'e');}
+  }
+  function complete(){
+    var v=inp.value.toLowerCase();if(!v||v.indexOf(' ')>-1)return;
+    var all=Object.keys(CMD).concat(['goto','open','echo']).filter(function(k){return k.indexOf(v)===0;});
+    if(all.length===1)inp.value=all[0]+(all[0]==='goto'||all[0]==='open'||all[0]==='echo'?' ':'');
+    else if(all.length>1){line('sarthak@portfolio:~$ '+v,'m');line('  '+all.join('   '));}
   }
   function open(){
     box.classList.add('open');btn.classList.add('hide');
-    if(!booted){booted=true;line('SARTHAK.OS v1.0 — portfolio terminal','c');line("Type 'help' to see commands.",'m');}
+    if(!booted){booted=true;line('SARTHAK.OS v2.0 — portfolio terminal','c');line("Type 'help' to see commands. Press Tab to auto-complete.",'m');}
     setTimeout(function(){inp.focus();},300);
   }
   function close(){box.classList.remove('open');btn.classList.remove('hide');}
@@ -2021,9 +2061,11 @@ n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click
   box.addEventListener('click',function(){inp.focus();});
   inp.addEventListener('keydown',function(e){
     if(e.key==='Enter'){run(inp.value);inp.value='';}
+    else if(e.key==='Tab'){e.preventDefault();complete();}
     else if(e.key==='ArrowUp'){if(hi>0){hi--;inp.value=hist[hi]||'';}e.preventDefault();}
     else if(e.key==='ArrowDown'){if(hi<hist.length-1){hi++;inp.value=hist[hi];}else{hi=hist.length;inp.value='';}e.preventDefault();}
     else if(e.key==='Escape'){close();}
+    else if(e.key==='l'&&e.ctrlKey){e.preventDefault();CMD.clear();}
   });
 })();
 </script>
